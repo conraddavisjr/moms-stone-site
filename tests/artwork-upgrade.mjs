@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {mergeCuratedArtwork} from '../lib/artwork.ts';
+const seed={id:'stone',title:'Seed title',hero:'/images/staged/stone.jpg',studioImages:['/images/staged/stone.jpg'],stagingRevision:2,generated:true};
+const legacy={id:'stone',title:'Seller-edited title',hero:'/images/catalog/stone/original.jpg',description:'Seller story',price:175};
+const upgraded=mergeCuratedArtwork(seed,legacy);
+assert.equal(upgraded.hero,seed.hero);assert.equal(upgraded.title,legacy.title);assert.equal(upgraded.description,legacy.description);assert.equal(upgraded.price,175);assert.deepEqual(upgraded.studioImages,seed.studioImages);
+const upload={...legacy,hero:'/media/uploads/custom.jpg'};
+assert.equal(mergeCuratedArtwork(seed,upload).hero,upload.hero);
+const deliberate={...legacy,stagingRevision:2,studioImages:[]};
+assert.equal(mergeCuratedArtwork(seed,deliberate).hero,deliberate.hero);assert.deepEqual(mergeCuratedArtwork(seed,deliberate).studioImages,[]);
+assert.deepEqual(mergeCuratedArtwork(undefined,upload),upload);
+console.log('PASS: legacy artwork upgrades preserve seller copy, prices, custom uploads, and subsequent gallery choices.');

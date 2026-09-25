@@ -6,7 +6,7 @@ import {Product,money} from '@/lib/product';
 type Media={src:string;type:'image'|'video'};
 export default function CollectionCard({product:p,onOpen,reduced,priority=false}:{product:Product;onOpen:()=>void;reduced:boolean;priority?:boolean}){
  const [hover,setHover]=useState(false),[focus,setFocus]=useState(false),[visible,setVisible]=useState(true),[cursor,setCursor]=useState(0),[ready,setReady]=useState(false),[previous,setPrevious]=useState<Media|null>(null);
- const cover=p.hero||p.images[0],images=useMemo(()=>Array.from(new Set([cover,...p.images].filter(Boolean))),[cover,p.images]);
+ const cover=p.hero||p.images[0],images=useMemo(()=>Array.from(new Set([cover,...(p.studioImages??p.images)].filter(Boolean))),[cover,p.images,p.studioImages]);
  const media=useMemo<Media[]>(()=>[...p.videos.map(src=>({src,type:'video' as const})),...images.map(src=>({src,type:'image' as const}))],[p.videos,images]);
  const active=(hover||focus)&&visible&&!reduced;
  const current=active?media[cursor%media.length]:null;
@@ -17,7 +17,7 @@ export default function CollectionCard({product:p,onOpen,reduced,priority=false}
  const next=()=>setCursor(i=>(i+1)%Math.max(media.length,1));
  useEffect(()=>{if(!active||media.length<2)return;if(current?.type==='image'&&ready){const t=setTimeout(()=>setCursor(i=>(i+1)%media.length),2200);return()=>clearTimeout(t)}if(!ready){const t=setTimeout(()=>setCursor(i=>(i+1)%media.length),8000);return()=>clearTimeout(t)}},[active,current,ready,media.length]);
  useEffect(()=>{if(current?.type!=='video')return;const v=video.current;if(!v)return;let cancelled=false;v.play().catch(()=>{if(!cancelled)next()});return()=>{cancelled=true;v.pause()}},[current]);
- const aiVisible=p.generated&&(!active||current?.src===cover);
+ const aiVisible=(!active&&p.generated)||current?.src.includes('/staged/');
  return <article className="product-card" onPointerEnter={e=>{if(e.pointerType==='mouse')setHover(true)}} onPointerLeave={()=>setHover(false)} onFocusCapture={()=>setFocus(true)} onBlurCapture={e=>{if(!e.currentTarget.contains(e.relatedTarget as Node))setFocus(false)}}>
  <button className={`card-image ${active?'is-previewing':''} ${images.length===1&&!p.videos.length?'single-image':''}`} onClick={onOpen} aria-label={`Explore ${p.title}`}>
  <img className="card-cover" loading={priority?'eager':'lazy'} src={cover} alt={p.title} style={{objectPosition:`${p.focalX??50}% ${p.focalY??50}%`,transform:`scale(${p.zoom??1})`}}/>

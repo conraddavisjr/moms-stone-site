@@ -65,7 +65,11 @@
     "kind": "product",
     "published": true,
     "revision": 0,
-    "generated": true
+    "generated": true,
+    "studioImages": [
+      "/images/staged/eclipse-garden.png"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "prismatic-heart",
@@ -133,7 +137,11 @@
     "kind": "product",
     "published": true,
     "revision": 0,
-    "generated": true
+    "generated": true,
+    "studioImages": [
+      "/images/staged/prismatic-heart.png"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "blue-hour",
@@ -217,7 +225,11 @@
     "kind": "product",
     "published": true,
     "revision": 0,
-    "generated": true
+    "generated": true,
+    "studioImages": [
+      "/images/staged/blue-hour.png"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "blue-crescent",
@@ -267,10 +279,15 @@
       "/images/catalog/blue-crescent/blue-crescent-01-poster.jpg",
       "/images/catalog/blue-crescent/blue-crescent-02-poster.jpg"
     ],
-    "hero": "/images/catalog/blue-crescent/blue-crescent-01-poster.jpg",
+    "hero": "/images/staged/blue-crescent.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/blue-crescent.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "woodland-world",
@@ -327,10 +344,15 @@
       "/images/catalog/woodland-world/woodland-world-02-poster.jpg",
       "/images/catalog/woodland-world/woodland-world-03-poster.jpg"
     ],
-    "hero": "/images/catalog/woodland-world/woodland-world-01.jpg",
+    "hero": "/images/staged/woodland-world.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/woodland-world.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "garden-collection",
@@ -398,10 +420,15 @@
     ],
     "originalVideos": [],
     "posters": [],
-    "hero": "/images/catalog/garden-collection/garden-collection-01.jpg",
+    "hero": "/images/staged/garden-collection.jpg",
     "kind": "collection",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/garden-collection.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "midnight-orbit",
@@ -465,10 +492,15 @@
     "posters": [
       "/images/catalog/midnight-orbit/midnight-orbit-04-poster.jpg"
     ],
-    "hero": "/images/catalog/midnight-orbit/midnight-orbit-01.jpg",
+    "hero": "/images/staged/midnight-orbit.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/midnight-orbit.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "shadow-orbit",
@@ -524,10 +556,15 @@
     "posters": [
       "/images/catalog/shadow-orbit/shadow-orbit-03-poster.jpg"
     ],
-    "hero": "/images/catalog/shadow-orbit/shadow-orbit-01.jpg",
+    "hero": "/images/staged/shadow-orbit.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/shadow-orbit.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "eclipse-window",
@@ -563,10 +600,15 @@
     ],
     "originalVideos": [],
     "posters": [],
-    "hero": "/images/catalog/eclipse-window/eclipse-window-01.jpg",
+    "hero": "/images/staged/eclipse-window.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/eclipse-window.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "ember-world",
@@ -610,10 +652,15 @@
     ],
     "originalVideos": [],
     "posters": [],
-    "hero": "/images/catalog/ember-world/ember-world-01.jpg",
+    "hero": "/images/staged/ember-world.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/ember-world.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "ember-collection",
@@ -657,10 +704,15 @@
     ],
     "originalVideos": [],
     "posters": [],
-    "hero": "/images/catalog/ember-collection/ember-collection-01.jpg",
+    "hero": "/images/staged/ember-collection.jpg",
     "kind": "collection",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/ember-collection.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "little-blue-world",
@@ -733,10 +785,15 @@
       "/images/catalog/little-blue-world/little-blue-world-04-poster.jpg",
       "/images/catalog/little-blue-world/little-blue-world-05-poster.jpg"
     ],
-    "hero": "/images/catalog/little-blue-world/little-blue-world-01.jpg",
+    "hero": "/images/staged/little-blue-world.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/little-blue-world.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "celestial-spire",
@@ -792,10 +849,15 @@
     "posters": [
       "/images/catalog/celestial-spire/celestial-spire-03-poster.jpg"
     ],
-    "hero": "/images/catalog/celestial-spire/celestial-spire-01.jpg",
+    "hero": "/images/staged/celestial-spire.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/celestial-spire.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "harvest-collection",
@@ -839,10 +901,15 @@
     ],
     "originalVideos": [],
     "posters": [],
-    "hero": "/images/catalog/harvest-collection/harvest-collection-01.jpg",
+    "hero": "/images/staged/harvest-collection.jpg",
     "kind": "collection",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/harvest-collection.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "tiny-landscapes",
@@ -924,10 +991,15 @@
       "/images/catalog/tiny-landscapes/tiny-landscapes-05-poster.jpg",
       "/images/catalog/tiny-landscapes/tiny-landscapes-06-poster.jpg"
     ],
-    "hero": "/images/catalog/tiny-landscapes/tiny-landscapes-01.jpg",
+    "hero": "/images/staged/tiny-landscapes.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/tiny-landscapes.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "tidal-eclipse",
@@ -975,10 +1047,15 @@
     "posters": [
       "/images/catalog/tidal-eclipse/tidal-eclipse-02-poster.jpg"
     ],
-    "hero": "/images/catalog/tidal-eclipse/tidal-eclipse-01.jpg",
+    "hero": "/images/staged/tidal-eclipse.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/tidal-eclipse.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "ice-halo",
@@ -1014,10 +1091,15 @@
     ],
     "originalVideos": [],
     "posters": [],
-    "hero": "/images/catalog/ice-halo/ice-halo-01.jpg",
+    "hero": "/images/staged/ice-halo.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/ice-halo.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "cosmic-thread",
@@ -1074,10 +1156,15 @@
       "/images/catalog/cosmic-thread/cosmic-thread-02-poster.jpg",
       "/images/catalog/cosmic-thread/cosmic-thread-03-poster.jpg"
     ],
-    "hero": "/images/catalog/cosmic-thread/cosmic-thread-01.jpg",
+    "hero": "/images/staged/cosmic-thread.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/cosmic-thread.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "moon-basin",
@@ -1133,10 +1220,15 @@
     "posters": [
       "/images/catalog/moon-basin/moon-basin-03-poster.jpg"
     ],
-    "hero": "/images/catalog/moon-basin/moon-basin-01.jpg",
+    "hero": "/images/staged/moon-basin.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/moon-basin.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "nebula-flame",
@@ -1180,10 +1272,15 @@
     ],
     "originalVideos": [],
     "posters": [],
-    "hero": "/images/catalog/nebula-flame/nebula-flame-01.jpg",
+    "hero": "/images/staged/nebula-flame.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/nebula-flame.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "first-snow",
@@ -1219,10 +1316,15 @@
     ],
     "originalVideos": [],
     "posters": [],
-    "hero": "/images/catalog/first-snow/first-snow-01.jpg",
+    "hero": "/images/staged/first-snow.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/first-snow.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "earthbound-orbit",
@@ -1258,10 +1360,15 @@
     ],
     "originalVideos": [],
     "posters": [],
-    "hero": "/images/catalog/earthbound-orbit/earthbound-orbit-01.jpg",
+    "hero": "/images/staged/earthbound-orbit.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/earthbound-orbit.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "golden-atmosphere",
@@ -1317,10 +1424,15 @@
     "posters": [
       "/images/catalog/golden-atmosphere/golden-atmosphere-03-poster.jpg"
     ],
-    "hero": "/images/catalog/golden-atmosphere/golden-atmosphere-01.jpg",
+    "hero": "/images/staged/golden-atmosphere.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/golden-atmosphere.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "solar-halo",
@@ -1368,10 +1480,15 @@
     "posters": [
       "/images/catalog/solar-halo/solar-halo-02-poster.jpg"
     ],
-    "hero": "/images/catalog/solar-halo/solar-halo-01.jpg",
+    "hero": "/images/staged/solar-halo.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/solar-halo.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "forest-moons",
@@ -1411,10 +1528,15 @@
     "posters": [
       "/images/catalog/forest-moons/forest-moons-01-poster.jpg"
     ],
-    "hero": "/images/catalog/forest-moons/forest-moons-01-poster.jpg",
+    "hero": "/images/staged/forest-moons.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/forest-moons.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "wild-garden-carvings",
@@ -1454,10 +1576,15 @@
     "posters": [
       "/images/catalog/wild-garden-carvings/wild-garden-carvings-01-poster.jpg"
     ],
-    "hero": "/images/catalog/wild-garden-carvings/wild-garden-carvings-01-poster.jpg",
+    "hero": "/images/staged/wild-garden-carvings.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/wild-garden-carvings.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "night-bloom",
@@ -1497,10 +1624,15 @@
     "posters": [
       "/images/catalog/night-bloom/night-bloom-01-poster.jpg"
     ],
-    "hero": "/images/catalog/night-bloom/night-bloom-01-poster.jpg",
+    "hero": "/images/staged/night-bloom.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/night-bloom.jpg"
+    ],
+    "stagingRevision": 2
   },
   {
     "id": "woodland-companion",
@@ -1540,9 +1672,14 @@
     "posters": [
       "/images/catalog/woodland-companion/woodland-companion-01-poster.jpg"
     ],
-    "hero": "/images/catalog/woodland-companion/woodland-companion-01-poster.jpg",
+    "hero": "/images/staged/woodland-companion.jpg",
     "kind": "product",
     "published": true,
-    "revision": 0
+    "revision": 0,
+    "generated": true,
+    "studioImages": [
+      "/images/staged/woodland-companion.jpg"
+    ],
+    "stagingRevision": 2
   }
 ]
