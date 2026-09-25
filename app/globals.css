@@ -149,3 +149,34 @@ body {
 .cosmos{max-height:none;padding-bottom:42px}.celestial.center{position:relative}.discovery-arrow,.discovery-playback{position:absolute;z-index:5;display:grid;place-items:center;width:44px;height:44px;border:1px solid #a8b7d144;border-radius:50%;color:#e9e9ec;background:#080b18b3;transition:background-color 200ms ease,border-color 200ms ease}.discovery-arrow:hover,.discovery-playback:hover{background:#1c2941;border-color:#a8b7d188}.discovery-arrow{top:50%;transform:translateY(-50%)}.discovery-arrow-left{left:clamp(16px,3vw,48px)}.discovery-arrow-right{right:clamp(16px,3vw,48px)}.discovery-playback{top:18px;right:clamp(16px,3vw,48px)}.discovery-playback:disabled{cursor:default;opacity:.45}.discovery-position{display:flex;align-items:center;gap:18px}.discovery-position>span{opacity:.8}
 @media(max-width:600px){.discover-intro{padding-top:72px}.discovery-arrow{top:46%}.discovery-arrow-left{left:12px}.discovery-arrow-right{right:12px}.discovery-playback{right:16px;top:16px}.cosmos{padding-bottom:35px}.discover-footer{justify-content:space-between;gap:12px}.discover-footer>.discovery-position{display:block;white-space:nowrap}.discovery-position>span{display:none}}
 .reference-photos{border-top:1px solid #d8dfe4;margin-top:24px;padding-top:16px}.reference-toggle{width:100%;display:flex;justify-content:space-between;align-items:center;padding:10px 0;color:#4e6071;font-size:14px}.reference-toggle>span{display:flex;gap:12px;align-items:center;color:#82909c}.reference-toggle[data-state=open] svg{transform:rotate(180deg)}.reference-photos p{font-size:13px;line-height:1.7;color:#74818e;margin:8px 0 20px}
+/* Pinned chrome owns its space; product media leads on small screens. */
+.site{--masthead-height:106px;padding-top:var(--masthead-height)}
+.masthead{position:fixed;inset:0 0 auto;height:var(--masthead-height);z-index:40;background:#080b18;isolation:isolate;transition:background-color 400ms ease,color 400ms ease,border-color 400ms ease}
+.day .masthead{background:#f7f7f5;border-color:#dce0e5}
+.detail-sheet{overflow:hidden;isolation:isolate}
+.detail-header{position:relative;z-index:10;background:#f7f7f5;min-height:83px;padding-top:env(safe-area-inset-top);height:calc(83px + env(safe-area-inset-top))}
+.detail-header>button{width:44px;height:44px;display:grid;place-items:center}
+.detail-layout{overflow-y:auto;overscroll-behavior:contain;min-height:0;flex:1;align-items:start;scroll-padding-top:24px}
+.detail-copy{top:0}.detail-copy .story{margin-top:26px}.detail-media{min-width:0}
+.detail-film{position:relative;width:100%}.detail-film video{display:block;object-fit:contain}
+.film-play-fallback{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:12px 18px;border-radius:30px;background:#0c142be6;color:white;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.film-error{font-size:13px;padding:12px;background:#e7ebf0;color:#34455b}.film-error button{text-decoration:underline}
+.lightbox-carousel figure>.detail-film{height:calc(94svh - 165px);max-height:930px;width:100%}.lightbox-carousel .detail-film video{width:100%;height:100%;object-fit:contain}
+.add-to-bag:disabled{cursor:wait;opacity:.75}
+.discovery-progress{position:absolute;inset:-1px;width:44px;height:44px;transform:rotate(-90deg);pointer-events:none;fill:none;stroke:#a8b7d133;stroke-width:1.5}
+.discovery-progress .progress-elapsed{stroke:#e2c997;stroke-linecap:round;stroke-width:2}
+.cosmos{touch-action:pan-y}
+.arrival-mist{position:absolute;pointer-events:none;inset:0 0 30%;z-index:2;border-radius:50%;opacity:0;background:radial-gradient(ellipse at 28% 65%,#b6c5e438,transparent 45%),radial-gradient(ellipse at 72% 32%,#d5bdd32e,transparent 50%);filter:blur(18px)}
+.arrival-dust{position:absolute;inset:0 0 30%;pointer-events:none;z-index:3}.arrival-dust i{position:absolute;width:3px;height:3px;border-radius:50%;background:#e2d7bc;opacity:0;box-shadow:0 0 8px #d7e6ff}
+.celestial.center .arrival-mist{animation:stone-mist 1500ms ease-out both}.celestial.center .arrival-dust i{animation:stone-dust 1300ms ease-out both}.celestial.center img{animation:stone-materialize 1200ms ease-out both}
+.bag-stardust{position:fixed;z-index:100;pointer-events:none;left:50%;bottom:120px;width:96px;height:96px;transform:translateX(-50%);display:grid;place-items:center;color:#ead2a1;background:radial-gradient(circle,#182640ed 20%,#18264000 70%)}
+.bag-star-core{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:#17263bea;box-shadow:0 0 24px #b6cae644;animation:star-breathe 900ms ease-in-out infinite alternate}
+.bag-star-orbit{position:absolute;inset:0;animation:bag-orbit 3s linear infinite}.bag-star-orbit i{position:absolute;left:42px;top:39px;font-size:17px;font-style:normal}
+.bag-stardust.complete{animation:bag-resolve 650ms ease-out forwards}.bag-stardust.complete .bag-star-core{background:#30465b;animation:none}
+@keyframes stone-materialize{from{opacity:.25;filter:blur(7px);scale:.94}to{opacity:1;filter:blur(0);scale:1}}
+@keyframes stone-mist{0%{opacity:0;transform:scale(.65) rotate(-15deg)}30%{opacity:.9}100%{opacity:0;transform:scale(1.28) rotate(12deg)}}
+@keyframes stone-dust{0%{opacity:0;transform:translateY(20px) scale(.3)}35%{opacity:.65}100%{opacity:0;transform:translateY(-32px) scale(.5)}}
+@keyframes bag-orbit{to{rotate:360deg}}@keyframes star-breathe{to{scale:1.12;box-shadow:0 0 32px #d8c49b66}}@keyframes bag-resolve{30%{opacity:1;translate:0 -8px}100%{opacity:0;translate:0 -40px;scale:.5}}
+@media(max-width:900px){.site{--masthead-height:95px}}
+@media(max-width:600px){.site{--masthead-height:calc(110px + env(safe-area-inset-top))}.masthead{padding-top:calc(19px + env(safe-area-inset-top))}.detail-layout{display:flex;flex-direction:column;padding:20px 6% 45px;gap:20px}.detail-media,.detail-copy{width:100%}.detail-copy{position:static;padding:0}.detail-header{min-height:65px;height:calc(65px + env(safe-area-inset-top))}.detail-primary img{max-height:none}.media-grid{grid-template-columns:1fr}.media-grid video{aspect-ratio:4/5;max-height:65svh}.reference-photos .media-grid{grid-template-columns:1fr 1fr}.lightbox-carousel figure>.detail-film{height:calc(100svh - 185px)}.bag-stardust{bottom:100px}.detail-price{margin-top:28px}}
+@media(prefers-reduced-motion:reduce){.arrival-mist,.arrival-dust{display:none}.celestial.center img,.bag-star-core,.bag-star-orbit,.bag-stardust.complete{animation:none!important}.bag-stardust.complete{opacity:1}.discovery-progress{display:none}}
