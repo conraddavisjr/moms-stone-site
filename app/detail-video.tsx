@@ -2,7 +2,7 @@
 import {useEffect,useRef,useState} from 'react';
 import {Play} from 'lucide-react';
 
-export default function DetailVideo({src,poster,active=true,onPlay}:{src:string;poster?:string;active?:boolean;onPlay:()=>void}){
+export default function DetailVideo({src,poster,active=true,label='Stone in changing light',onPlay}:{src:string;poster?:string;active?:boolean;label?:string;onPlay:()=>void}){
  const video=useRef<HTMLVideoElement>(null),userPaused=useRef(false),systemPaused=useRef(false);
  const [mobileMotion,setMobileMotion]=useState(false),[inView,setInView]=useState(false),[visible,setVisible]=useState(true),[blocked,setBlocked]=useState(false),[failed,setFailed]=useState(false);
  useEffect(()=>{
@@ -19,7 +19,7 @@ export default function DetailVideo({src,poster,active=true,onPlay}:{src:string;
   else if(mobileMotion&&!userPaused.current){systemPaused.current=false;v.muted=true;v.play().catch(()=>{if(!cancelled)setBlocked(true)})}
   return()=>{cancelled=true};
  },[active,visible,inView,mobileMotion,src]);
- return <div className="detail-film"><video ref={video} src={src} controls muted playsInline preload="auto" poster={poster} tabIndex={active?0:-1}
+ return <div className="detail-film"><video aria-label={label} ref={video} src={src} controls muted playsInline preload="auto" poster={poster} tabIndex={active?0:-1}
   onPlay={()=>{systemPaused.current=false;userPaused.current=false;setBlocked(false);onPlay()}}
   onPause={()=>{if(!systemPaused.current)userPaused.current=true}}
   onError={()=>{setFailed(true);setBlocked(false)}}/>

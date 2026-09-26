@@ -1,0 +1,142 @@
+{
+  "/images/staged/eclipse-garden.png": [
+    "/images/responsive/eclipse-garden-320.webp 320w",
+    "/images/responsive/eclipse-garden-640.webp 640w",
+    "/images/responsive/eclipse-garden-960.webp 960w"
+  ],
+  "/images/staged/prismatic-heart.png": [
+    "/images/responsive/prismatic-heart-320.webp 320w",
+    "/images/responsive/prismatic-heart-640.webp 640w",
+    "/images/responsive/prismatic-heart-960.webp 960w"
+  ],
+  "/images/staged/blue-hour.png": [
+    "/images/responsive/blue-hour-320.webp 320w",
+    "/images/responsive/blue-hour-640.webp 640w",
+    "/images/responsive/blue-hour-960.webp 960w"
+  ],
+  "/images/staged/blue-crescent.jpg": [
+    "/images/responsive/blue-crescent-320.webp 320w",
+    "/images/responsive/blue-crescent-640.webp 640w",
+    "/images/responsive/blue-crescent-960.webp 960w"
+  ],
+  "/images/staged/woodland-world.jpg": [
+    "/images/responsive/woodland-world-320.webp 320w",
+    "/images/responsive/woodland-world-640.webp 640w",
+    "/images/responsive/woodland-world-960.webp 960w"
+  ],
+  "/images/staged/garden-collection.jpg": [
+    "/images/responsive/garden-collection-320.webp 320w",
+    "/images/responsive/garden-collection-640.webp 640w",
+    "/images/responsive/garden-collection-960.webp 960w"
+  ],
+  "/images/staged/midnight-orbit.jpg": [
+    "/images/responsive/midnight-orbit-320.webp 320w",
+    "/images/responsive/midnight-orbit-640.webp 640w",
+    "/images/responsive/midnight-orbit-960.webp 960w"
+  ],
+  "/images/staged/shadow-orbit.jpg": [
+    "/images/responsive/shadow-orbit-320.webp 320w",
+    "/images/responsive/shadow-orbit-640.webp 640w",
+    "/images/responsive/shadow-orbit-960.webp 960w"
+  ],
+  "/images/staged/eclipse-window.jpg": [
+    "/images/responsive/eclipse-window-320.webp 320w",
+    "/images/responsive/eclipse-window-640.webp 640w",
+    "/images/responsive/eclipse-window-960.webp 960w"
+  ],
+  "/images/staged/ember-world.jpg": [
+    "/images/responsive/ember-world-320.webp 320w",
+    "/images/responsive/ember-world-640.webp 640w",
+    "/images/responsive/ember-world-960.webp 960w"
+  ],
+  "/images/staged/ember-collection.jpg": [
+    "/images/responsive/ember-collection-320.webp 320w",
+    "/images/responsive/ember-collection-640.webp 640w",
+    "/images/responsive/ember-collection-960.webp 960w"
+  ],
+  "/images/staged/little-blue-world.jpg": [
+    "/images/responsive/little-blue-world-320.webp 320w",
+    "/images/responsive/little-blue-world-640.webp 640w",
+    "/images/responsive/little-blue-world-960.webp 960w"
+  ],
+  "/images/staged/celestial-spire.jpg": [
+    "/images/responsive/celestial-spire-320.webp 320w",
+    "/images/responsive/celestial-spire-640.webp 640w",
+    "/images/responsive/celestial-spire-960.webp 960w"
+  ],
+  "/images/staged/harvest-collection.jpg": [
+    "/images/responsive/harvest-collection-320.webp 320w",
+    "/images/responsive/harvest-collection-640.webp 640w",
+    "/images/responsive/harvest-collection-960.webp 960w"
+  ],
+  "/images/staged/tiny-landscapes.jpg": [
+    "/images/responsive/tiny-landscapes-320.webp 320w",
+    "/images/responsive/tiny-landscapes-640.webp 640w",
+    "/images/responsive/tiny-landscapes-960.webp 960w"
+  ],
+  "/images/staged/tidal-eclipse.jpg": [
+    "/images/responsive/tidal-eclipse-320.webp 320w",
+    "/images/responsive/tidal-eclipse-640.webp 640w",
+    "/images/responsive/tidal-eclipse-960.webp 960w"
+  ],
+  "/images/staged/ice-halo.jpg": [
+    "/images/responsive/ice-halo-320.webp 320w",
+    "/images/responsive/ice-halo-640.webp 640w",
+    "/images/responsive/ice-halo-960.webp 960w"
+  ],
+  "/images/staged/cosmic-thread.jpg": [
+    "/images/responsive/cosmic-thread-320.webp 320w",
+    "/images/responsive/cosmic-thread-640.webp 640w",
+    "/images/responsive/cosmic-thread-960.webp 960w"
+  ],
+  "/images/staged/moon-basin.jpg": [
+    "/images/responsive/moon-basin-320.webp 320w",
+    "/images/responsive/moon-basin-640.webp 640w",
+    "/images/responsive/moon-basin-960.webp 960w"
+  ],
+  "/images/staged/nebula-flame.jpg": [
+    "/images/responsive/nebula-flame-320.webp 320w",
+    "/images/responsive/nebula-flame-640.webp 640w",
+    "/images/responsive/nebula-flame-960.webp 960w"
+  ],
+  "/images/staged/first-snow.jpg": [
+    "/images/responsive/first-snow-320.webp 320w",
+    "/images/responsive/first-snow-640.webp 640w",
+    "/images/responsive/first-snow-960.webp 960w"
+  ],
+  "/images/staged/earthbound-orbit.jpg": [
+    "/images/responsive/earthbound-orbit-320.webp 320w",
+    "/images/responsive/earthbound-orbit-640.webp 640w",
+    "/images/responsive/earthbound-orbit-960.webp 960w"
+  ],
+  "/images/staged/golden-atmosphere.jpg": [
+    "/images/responsive/golden-atmosphere-320.webp 320w",
+    "/images/responsive/golden-atmosphere-640.webp 640w",
+    "/images/responsive/golden-atmosphere-960.webp 960w"
+  ],
+  "/images/staged/solar-halo.jpg": [
+    "/images/responsive/solar-halo-320.webp 320w",
+    "/images/responsive/solar-halo-640.webp 640w",
+    "/images/responsive/solar-halo-960.webp 960w"
+  ],
+  "/images/staged/forest-moons.jpg": [
+    "/images/responsive/forest-moons-320.webp 320w",
+    "/images/responsive/forest-moons-640.webp 640w",
+    "/images/responsive/forest-moons-960.webp 960w"
+  ],
+  "/images/staged/wild-garden-carvings.jpg": [
+    "/images/responsive/wild-garden-carvings-320.webp 320w",
+    "/images/responsive/wild-garden-carvings-640.webp 640w",
+    "/images/responsive/wild-garden-carvings-960.webp 960w"
+  ],
+  "/images/staged/night-bloom.jpg": [
+    "/images/responsive/night-bloom-320.webp 320w",
+    "/images/responsive/night-bloom-640.webp 640w",
+    "/images/responsive/night-bloom-960.webp 960w"
+  ],
+  "/images/staged/woodland-companion.jpg": [
+    "/images/responsive/woodland-companion-320.webp 320w",
+    "/images/responsive/woodland-companion-640.webp 640w",
+    "/images/responsive/woodland-companion-960.webp 960w"
+  ]
+}

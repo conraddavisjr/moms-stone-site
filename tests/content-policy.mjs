@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {lockedCopyViolation,migrateContent} from '../lib/content-policy.ts';
+import {canAdd,quantityLimit,sold} from '../lib/product.ts';
+import {heartStory,heartWonder} from '../content/brand.ts';
+const products=JSON.parse(fs.readFileSync('app/data/catalog.json'));
+const heart=products.find(p=>p.id==='prismatic-heart');
+assert.equal(heart.description,heartStory);assert.equal(heart.wonderCard.title,heartWonder);
+assert.equal(heart.title,'Clear Quartz Heart');assert.equal(heart.nameStatus,'placeholder');
+assert.ok(lockedCopyViolation(heart,{...heart,description:'A generic rewrite'}));
+assert.ok(lockedCopyViolation(heart,{...heart,protectedFields:[]}));
+assert.equal(lockedCopyViolation(heart,{...heart,price:90}),undefined);
+assert.ok(lockedCopyViolation({...heart,storyStatus:'locked'}, {...heart,storyStatus:'draft',description:'Changed'}));
+const legacy={...heart,...heart.prototypeContent,contentVersion:undefined,wonderCard:undefined,protectedFields:undefined};
+const migrated=migrateContent(heart,legacy);assert.equal(migrated.description,heartStory);assert.equal(migrated.title,'Clear Quartz Heart');assert.deepEqual(migrated.prototypeContent,heart.prototypeContent);
+const custom={...legacy,title:'Seller title',price:215};assert.equal(migrateContent(heart,custom).title,'Seller title');assert.equal(migrateContent(heart,custom).price,215);
+const unique={...heart,inventory:1,unique:true,availability:'available'};
+assert.equal(quantityLimit(unique),1);assert.equal(canAdd(unique,0),true);assert.equal(canAdd(unique,1),false);
+assert.equal(canAdd({...unique,availability:'sold'}),false);assert.equal(sold({...unique,inventory:0}),true);
+assert.equal(canAdd({...unique,kind:'collection'}),false);
+for(const p of products){assert.ok(p.nameStatus);assert.ok(p.storyStatus);assert.ok(p.prototypeContent);assert.equal(p.facts.weight,undefined);assert.equal(p.facts.origin,undefined);assert.equal(p.facts.dimensions,undefined)}
+console.log('PASS exact Sacred Bloom copy, lock enforcement, legacy migration, one-of-one/sold behavior, and unknown facts.');

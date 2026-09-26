@@ -69,18 +69,38 @@
     "studioImages": [
       "/images/staged/eclipse-garden.png"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Eclipse Garden",
+      "subtitle": "Black and cream orbicular agate sphere",
+      "summary": "Ivory blooms emerge from a midnight ground.",
+      "description": "Ivory blooms open across a glossy midnight ground, each surrounded by scalloped edges and soft rings of mineral color. The patterns can look like flowers, small moons or overlapping eclipses, depending on where the eye settles. Against the dark body, their pale outlines feel unusually clear and almost drawn by hand.\n\nA slow turn reveals how the circles stretch, meet and separate around the polished sphere. Some gather into elaborate clusters; others leave more open darkness between them. Those pauses are part of the appeal, giving the ornate passages space to stand out and preventing the pattern from ever feeling uniform.\n\nLet this piece be the graphic center of a quieter arrangement. Its black and cream palette works beautifully with warm neutrals, while its natural complexity supplies all the ornament it needs. From across a room it offers bold contrast; up close, it becomes an intricate garden of edges, rings and small mineral surprises."
+    },
+    "slug": "eclipse-garden",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Cream scalloped circles and lace-like rims against glossy black material.",
+    "facts": {
+      "notes": [
+        "Cream scalloped circles and lace-like rims against glossy black material."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "prismatic-heart",
-    "title": "Prismatic Heart",
-    "subtitle": "Clear quartz heart",
-    "description": "A familiar heart shape becomes a window into a bright, intricate interior. Clear passages meet feathered fracture veils, while occasional rainbow reflections appear like brief ribbons of an aurora. The broad curves gather light gently, giving this polished piece a softness that contrasts with the crisp detail held inside.\n\nLook closely and the interior begins to resemble overlapping panes of ice, tiny silver clouds or a distant sky seen through glass. Some areas feel remarkably open; others scatter the light into a fine shimmer. Those changes make the heart feel different with each turn, revealing something more interesting than a perfectly empty transparency.\n\nPlace it where natural light can reach its surface, or keep it among objects that carry a personal story. Its beauty is both immediate and patient: the clear outline reads in a moment, while the veils and small flashes within reward the kind of looking that takes a little longer.",
-    "summary": "A little light, made tangible.",
+    "title": "Clear Quartz Heart",
+    "subtitle": "",
+    "description": "The light did not wait for perfection.\n\nIt entered through every veil, every fracture,\nevery place that might once have been mistaken\nfor an imperfection—and there, it became color.\n\nPerhaps that is why this heart feels so familiar.\nNot because it is flawless, but because it isn't.\nAnd still, when the light finds it, there are rainbows.",
+    "summary": "Transparent quartz with internal fracture veils and rainbow refractions visible at certain angles.",
     "price": 88,
     "currency": "USD",
     "priceStatus": "arbitrary demonstration price",
-    "mineral": "Clear quartz, provisional",
+    "mineral": "Clear quartz",
     "identificationStatus": "provisional visual identification",
     "confidence": "medium",
     "evidence": "Colorless transparent heart with internal fracture veils and rainbow reflections.",
@@ -141,7 +161,39 @@
     "studioImages": [
       "/images/staged/prismatic-heart.png"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Prismatic Heart",
+      "subtitle": "Clear quartz heart",
+      "summary": "A little light, made tangible.",
+      "description": "A familiar heart shape becomes a window into a bright, intricate interior. Clear passages meet feathered fracture veils, while occasional rainbow reflections appear like brief ribbons of an aurora. The broad curves gather light gently, giving this polished piece a softness that contrasts with the crisp detail held inside.\n\nLook closely and the interior begins to resemble overlapping panes of ice, tiny silver clouds or a distant sky seen through glass. Some areas feel remarkably open; others scatter the light into a fine shimmer. Those changes make the heart feel different with each turn, revealing something more interesting than a perfectly empty transparency.\n\nPlace it where natural light can reach its surface, or keep it among objects that carry a personal story. Its beauty is both immediate and patient: the clear outline reads in a moment, while the veils and small flashes within reward the kind of looking that takes a little longer."
+    },
+    "slug": "prismatic-heart",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "draft",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Polished clear quartz heart with internal fracture veils and rainbow refractions.",
+    "facts": {
+      "material": "Clear quartz",
+      "features": [
+        "Polished heart form",
+        "Transparent / translucent quartz",
+        "Internal fracture veils",
+        "Rainbow refractions visible at certain angles"
+      ],
+      "status": "draft"
+    },
+    "protectedFields": [
+      "description",
+      "wonderCard"
+    ],
+    "wonderCard": {
+      "title": "The light did not wait for perfection.",
+      "status": "draft"
+    }
   },
   {
     "id": "blue-hour",
@@ -229,7 +281,27 @@
     "studioImages": [
       "/images/staged/blue-hour.png"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "The Blue Hour",
+      "subtitle": "Blue mineral statement sphere",
+      "summary": "A whole sky gathered into stone.",
+      "description": "Silvery-white threads sweep through deep blue, like cirrus clouds stretched across the last light of evening. The pattern has a directional energy that seems to travel around the sphere, wrapping its rounded form in layers of weather. From a distance the colors merge into a cool, atmospheric whole.\n\nUp close, the pale lines become more intricate. They cross darker passages, gather into brighter areas and leave pockets of blue between them. The polished finish brings these contrasts forward, allowing the surface to feel both smooth and visually textured. Turning the sphere changes the direction of the pattern, as though a different current has entered the sky.\n\nThe Blue Hour makes a natural focal point for an arrangement built around soft neutrals or darker tones. Give it enough space for the silhouette to read clearly. Its presence comes from a compelling combination of a simple shape, a rich color and mineral detail that never quite repeats itself."
+    },
+    "slug": "blue-hour",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Dense blue-white fibrous or streaked texture, large sphere; indoor photo 36 matching is probable rather than certain.",
+    "facts": {
+      "notes": [
+        "Dense blue-white fibrous or streaked texture, large sphere; indoor photo 36 matching is probable rather than certain."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "blue-crescent",
@@ -287,7 +359,27 @@
     "studioImages": [
       "/images/staged/blue-crescent.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Blue Crescent",
+      "subtitle": "Blue mineral crescent moon",
+      "summary": "A familiar lunar shape, filled with the colors of a storm-soft sky.",
+      "description": "The moon is a familiar shape, but this crescent carries a sky of its own. Soft blue gathers between pale, feathered streaks, creating a surface that feels somewhere between drifting cloud and a weathered lunar map. The sweeping curve gives those intricate mineral markings room to move.\n\nAcross its broad face, darker flecks interrupt the quieter ivory passages. Turn the carving and its polished edge catches a narrow line of light, bringing the silhouette into sharper focus. The colors stay gentle while the pattern remains wonderfully busy, offering both a calm first impression and a more detailed second look.\n\nSet it among rounded stones for a change of rhythm, or let the crescent stand visually on its own. Its appeal lives in that meeting of a deliberate shape and an unpredictable interior: a small celestial emblem drawn in blue, white and the endlessly varied handwriting of mineral texture."
+    },
+    "slug": "blue-crescent",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Matching crescent carving with blue-white fibrous pattern and broad polished faces.",
+    "facts": {
+      "notes": [
+        "Matching crescent carving with blue-white fibrous pattern and broad polished faces."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "woodland-world",
@@ -352,7 +444,27 @@
     "studioImages": [
       "/images/staged/woodland-world.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Woodland World",
+      "subtitle": "Moss-patterned statement sphere",
+      "summary": "A world held in miniature.",
+      "description": "Cloud-white fields open across this polished world, bordered by deep greens, smoky grays and warm brown detail. From one angle, the markings suggest an aerial view of a forest coast; from another, they become a distant planet wrapped in moving weather. Its rounded silhouette gathers those shifting landscapes into one continuous view.\n\nThe pale passages provide space for the darker, more intricate areas to unfold. Branching textures and mottled mineral color create a sense of depth without ever settling into a single picture. A slow turn changes the balance between light and dark, revealing fresh shorelines, cloudbanks and imagined mountain ranges.\n\nGive this piece a place where it can be seen from more than one side. The pleasure is in returning to it and finding a new composition each time: an earthly object with the visual reach of a little world, inviting curiosity through pattern, contrast and a beautifully reflective surface."
+    },
+    "slug": "woodland-world",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Milky quartz-like fields, green and brown branching inclusions, polished round form. Video pair may depict closely related specimens; seller confirmation required.",
+    "facts": {
+      "notes": [
+        "Milky quartz-like fields, green and brown branching inclusions, polished round form. Video pair may depict closely related specimens; seller confirmation required."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "garden-collection",
@@ -428,11 +540,31 @@
     "studioImages": [
       "/images/staged/garden-collection.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "The Secret Garden",
+      "subtitle": "Outdoor collection study",
+      "summary": "An earthly constellation of forest greens, cloudy whites and polished contours, gathered in the afternoon light..",
+      "description": "An outdoor gathering of cloudy whites, forest greens and polished stone forms becomes a small constellation beside the water. Different scales create a gentle rhythm, while the soft fabric and afternoon light let the mineral patterns remain the focus.\n\nThese photographs tell the story of the collection as a whole. Spheres and sculptural shapes share a palette without repeating one another, creating a study in the many ways a stone can hold a landscape. Explore the individual pieces for their closer details and distinct personalities."
+    },
+    "slug": "garden-collection",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Group photographs show multiple spheres and carvings; editorial collection media only.",
+    "facts": {
+      "notes": [
+        "Group photographs show multiple spheres and carvings; editorial collection media only."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "midnight-orbit",
-    "title": "Midnight Orbit",
+    "title": "Dark / Smoky Sphere",
     "subtitle": "Smoky quartz sphere",
     "description": "Smoky brown and deep gray gather inside a sphere that seems to hold its own evening sky. A broad, pale veil moves through the darker transparency, interrupted by small reflective flashes. The first impression is quiet and mysterious, but the interior becomes more animated as light finds a way through.\n\nIts polished curve shifts the balance between reflection and depth. At one angle, the surface reads as a dark mirror; at another, it opens onto clouded layers and fine internal detail. The effect recalls the edge of a planet passing into shadow, with a little brightness still caught along the horizon.\n\nThis is a piece for anyone drawn to subtle color and a strong silhouette. Let it sit against a light background to reveal the smoky body, or pair it with pale stones for contrast. The drama comes from the relationship between darkness and transparency, and the surprises that remain visible between them.",
     "summary": "Smoke, silver and sudden sparks of light drift through a polished orbit.",
@@ -500,7 +632,27 @@
     "studioImages": [
       "/images/staged/midnight-orbit.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Midnight Orbit",
+      "subtitle": "Smoky quartz sphere",
+      "summary": "Smoke, silver and sudden sparks of light drift through a polished orbit.",
+      "description": "Smoky brown and deep gray gather inside a sphere that seems to hold its own evening sky. A broad, pale veil moves through the darker transparency, interrupted by small reflective flashes. The first impression is quiet and mysterious, but the interior becomes more animated as light finds a way through.\n\nIts polished curve shifts the balance between reflection and depth. At one angle, the surface reads as a dark mirror; at another, it opens onto clouded layers and fine internal detail. The effect recalls the edge of a planet passing into shadow, with a little brightness still caught along the horizon.\n\nThis is a piece for anyone drawn to subtle color and a strong silhouette. Let it sit against a light background to reveal the smoky body, or pair it with pale stones for contrast. The drama comes from the relationship between darkness and transparency, and the surprises that remain visible between them."
+    },
+    "slug": "midnight-orbit",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Brown-gray transparent sphere with broad pale fracture veil; strong correspondence across views.",
+    "facts": {
+      "notes": [
+        "Brown-gray transparent sphere with broad pale fracture veil; strong correspondence across views."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "shadow-orbit",
@@ -564,7 +716,27 @@
     "studioImages": [
       "/images/staged/shadow-orbit.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Shadow Orbit",
+      "subtitle": "Deep smoky quartz sphere",
+      "summary": "A dark little planet with a secret horizon.",
+      "description": "A deep smoky body gives this sphere the presence of a tiny world seen after sunset. The upper areas offer clearer windows into the stone, while a more frosted region gathers below like a bank of distant weather. Its restrained palette makes the changes in texture especially easy to appreciate.\n\nAs the sphere turns, pale fractures catch light across the darker interior. Some appear as fine, scattered points; others gather into a softer haze. Rather than presenting one fixed image, the stone moves between a quiet transparent depth and a more sparkling, clouded view, each held inside the same smooth outline.\n\nChoose this orbit for a composition that needs a darker note without losing a sense of light. It can bring depth to a shelf of clear objects or create a simple focal point on its own. The appeal is understated: a dark surface, an open interior and a frost-bright horizon waiting just beneath."
+    },
+    "slug": "shadow-orbit",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Dark transparent sphere with relatively clear upper area and frosted lower fracture zone; kept separate from similar sphere.",
+    "facts": {
+      "notes": [
+        "Dark transparent sphere with relatively clear upper area and frosted lower fracture zone; kept separate from similar sphere."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "eclipse-window",
@@ -608,7 +780,27 @@
     "studioImages": [
       "/images/staged/eclipse-window.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Eclipse Window",
+      "subtitle": "Banded agate sphere with crystal pocket",
+      "summary": "Silver-gray lines trace an orbital map across a deep charcoal surface.",
+      "description": "Gray lines trace a series of sweeping paths across a deep charcoal sphere. Their curves suggest orbital tracks or the contour lines of an unfamiliar moon, gathering the eye toward a small, open crystal pocket. That interruption in the polished surface gives the piece its particular sense of discovery.\n\nThe pocket introduces a different texture: a glimpse of crystalline detail surrounded by smooth bands. Warm brown and orange passages near the lower areas add an unexpected change of temperature to the cooler grays. Together, these features create a composition that moves between precision and irregularity, a carefully shaped object retaining a window into something less orderly.\n\nDisplay it with the opening visible, then take time to explore the bands around the rest of the sphere. There is plenty beyond its most striking feature. The whole piece reads like a small astronomical map, complete with a glittering observation point and a quietly glowing edge of earth color."
+    },
+    "slug": "eclipse-window",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Gray concentric bands around a small open crystal-lined pocket; brown-orange lower zone.",
+    "facts": {
+      "notes": [
+        "Gray concentric bands around a small open crystal-lined pocket; brown-orange lower zone."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "ember-world",
@@ -660,7 +852,27 @@
     "studioImages": [
       "/images/staged/ember-world.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Ember World",
+      "subtitle": "Red and charcoal patterned stone sphere",
+      "summary": "Rust-red ribbons sweep through charcoal valleys and pale mineral seams.",
+      "description": "Rust-red ribbons sweep through charcoal valleys, interrupted by pale seams that seem to divide one imagined landscape from another. The colors carry the warmth of embers, but the rounded form gives them the scale of a small planet. It is a sphere with a strong first impression and an unusually active surface.\n\nThe folded, flowing pattern encourages the eye to follow a line, lose it in a darker region, then find it again somewhere unexpected. Cream accents sharpen those movements, while broader red areas create a warmer, quieter counterpoint. Each view offers a different balance of the three colors, with no single side telling the whole story.\n\nPlace Ember World where its warm tones can converse with wood, pale fabric or a restrained dark background. It brings a sense of movement even while perfectly still. Think of it as a sculptural landscape in the round: canyon-like, atmospheric and full of routes for the imagination to follow."
+    },
+    "slug": "ember-world",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Red-orange folded pattern with black and cream swirls; visual identity cannot determine species.",
+    "facts": {
+      "notes": [
+        "Red-orange folded pattern with black and cream swirls; visual identity cannot determine species."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "ember-collection",
@@ -712,7 +924,27 @@
     "studioImages": [
       "/images/staged/ember-collection.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Ember Constellation",
+      "subtitle": "Red stone collection study",
+      "summary": "A constellation in terracotta and black, arranged as a study of scale, texture and warm mineral color..",
+      "description": "Terracotta reds, charcoal shadows and pale mineral lines create a warm constellation of spheres and sculptural forms. The larger piece establishes the rhythm, while smaller objects echo its colors in their own distinct patterns.\n\nPhotographed together in outdoor light, the collection becomes a study of scale and shape. Rounded contours meet more angular silhouettes, creating a composition that feels collected over time. These images offer the wider setting for the individual pieces, with the warm palette connecting them like related worlds in a shared sky."
+    },
+    "slug": "ember-collection",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Multiple red patterned objects including large sphere, small spheres, point and carvings. Editorial group only.",
+    "facts": {
+      "notes": [
+        "Multiple red patterned objects including large sphere, small spheres, point and carvings. Editorial group only."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "little-blue-world",
@@ -793,7 +1025,27 @@
     "studioImages": [
       "/images/staged/little-blue-world.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Little Blue World",
+      "subtitle": "Blue and white palm-size sphere",
+      "summary": "Pale cloud bands cross an inky blue sea.",
+      "description": "Pale cloud bands cross a deep blue sea, creating a small world that feels complete from every angle. White and gray markings soften the blue, while finer streaks add a sense of motion beneath the polished surface. The rounded shape lets those changing colors flow continuously, without a frame or a fixed beginning.\n\nCloser looking reveals a lively mix of mottling and more directional lines. Some passages feel like distant weather, others like a map glimpsed through cloud cover. Its colors remain gentle enough for an everyday setting, yet there is enough contrast to make each view distinct when the sphere is turned.\n\nKeep it among books, beside a larger specimen or in a carefully chosen group of personal objects. Little Blue World lends itself to intimate arrangements, where its quieter detail can be appreciated. It offers the visual pleasure of a whole sky compressed into a simple polished form, ready to reveal another side."
+    },
+    "slug": "little-blue-world",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Blue-white mottling and fine streaks; video 62 includes large sphere briefly but centers small sphere.",
+    "facts": {
+      "notes": [
+        "Blue-white mottling and fine streaks; video 62 includes large sphere briefly but centers small sphere."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "celestial-spire",
@@ -857,7 +1109,27 @@
     "studioImages": [
       "/images/staged/celestial-spire.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Celestial Spire",
+      "subtitle": "Blue mineral tower",
+      "summary": "A slender blue horizon reaching upward.",
+      "description": "A tall, pointed silhouette draws the eye upward through blue-gray and cream mineral streaks. The colors move diagonally across the faces, giving this polished tower a quiet sense of momentum. Its geometry feels deliberate, while the interior pattern remains loose and flowing, like weather passing behind the outline of a distant monument.\n\nEach flat face catches light differently. One may appear pale and reflective while the next deepens into blue, making the edges visible without interrupting the continuity of the stone. The pointed top gathers those changing planes into a clear finish, a small architectural gesture shaped from an intricate material.\n\nUse Celestial Spire to add height among rounded objects or let it create a clean vertical note beside books and artwork. Its character is neither entirely architectural nor entirely landscape-like. It lives in the space between them, where a familiar tower shape carries the unexpected movement of clouds, currents and fine mineral lines."
+    },
+    "slug": "celestial-spire",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Tall faceted point with diagonal blue-gray and cream streaks.",
+    "facts": {
+      "notes": [
+        "Tall faceted point with diagonal blue-gray and cream streaks."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "harvest-collection",
@@ -909,7 +1181,27 @@
     "studioImages": [
       "/images/staged/harvest-collection.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Harvest Light",
+      "subtitle": "Warm mineral collection study",
+      "summary": "Copper, honey and cloud-white textures catch the low afternoon light in this warm collection study..",
+      "description": "Honey, copper and cloud-white textures gather in the low outdoor light. A warm-toned sphere, an upright tower and a more irregular pale piece create a composition with several different rhythms, linked by their orange and red accents.\n\nThe photographs celebrate the collection as a setting: smooth curves beside crystalline texture, slender height beside rounded weight. Together they suggest a harvest-colored landscape at the edge of evening. Look through the individual objects to appreciate their separate patterns, while these wider views capture the warmth they share."
+    },
+    "slug": "harvest-collection",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Orange sphere, tower and raw white-orange piece shown together; no isolated identification evidence.",
+    "facts": {
+      "notes": [
+        "Orange sphere, tower and raw white-orange piece shown together; no isolated identification evidence."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "tiny-landscapes",
@@ -999,7 +1291,27 @@
     "studioImages": [
       "/images/staged/tiny-landscapes.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Tiny Landscapes",
+      "subtitle": "Faceted inclusion quartz bracelet",
+      "summary": "Every bead is a small window onto another landscape.",
+      "description": "Each faceted bead opens onto a different little scene. Clear windows frame gray wisps, bronze-colored detail and darker mineral passages, creating a bracelet that feels like a sequence of landscapes rather than a repeated pattern. The elongated shapes give those interiors room to be seen, while their facets add bright, changing reflections.\n\nThe colors move gently between smoky, golden and nearly transparent. Some beads contain more visible detail, while others offer a quieter pause. Worn together, they create a pleasing irregular rhythm, with the same palette appearing in different proportions around the circle. A small movement changes which interior comes forward and which facet catches the light.\n\nTiny Landscapes suits the collector who enjoys looking closely. Its interest lies in the differences between beads, the unexpected marks and the small scenes the mind discovers within them. It is a wearable study in transparency and inclusion, carrying a whole series of miniature worlds in one continuous line."
+    },
+    "slug": "tiny-landscapes",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Faceted barrel-like clear beads containing gray, gold and brown inclusions.",
+    "facts": {
+      "notes": [
+        "Faceted barrel-like clear beads containing gray, gold and brown inclusions."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "tidal-eclipse",
@@ -1055,7 +1367,27 @@
     "studioImages": [
       "/images/staged/tidal-eclipse.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Tidal Eclipse",
+      "subtitle": "Lace-patterned agate sphere",
+      "summary": "A midnight island ringed in ivory gives way to a soft pink sea.",
+      "description": "A dark island sits inside scalloped ivory borders, creating a striking pattern that recalls a shoreline seen from far above. Around it, warmer and paler colors soften the transition into the rest of the sphere. The combination feels at once graphic and atmospheric, with a strong central feature surrounded by more delicate detail.\n\nTurn the piece and the mood changes. The reverse opens into a paler, pink-toned and more translucent view, trading bold contrast for a softer glow. This difference between sides gives the sphere an unusual range, as though one little world contains both a dramatic night coast and a hazy morning sky.\n\nTidal Eclipse rewards a display that allows it to be turned and reconsidered. Choose the darker face for a bolder composition or let the pale side offer a quieter presence. Both belong to the same continuous stone, joined by bands, shifting color and the satisfying smoothness of the polished form."
+    },
+    "slug": "tidal-eclipse",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Black center with white scalloped rims; reverse is pale pink and translucent.",
+    "facts": {
+      "notes": [
+        "Black center with white scalloped rims; reverse is pale pink and translucent."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "ice-halo",
@@ -1099,7 +1431,27 @@
     "studioImages": [
       "/images/staged/ice-halo.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Ice Halo",
+      "subtitle": "Clear quartz bead bracelet",
+      "summary": "A circle of bright, frost-like beads catches light with every movement.",
+      "description": "A circle of clear, rounded beads holds a fine network of pale internal detail. The effect recalls frost suspended in ice: bright, intricate and slightly different from bead to bead. There is no strong color to distract from the way light moves through the bracelet, making texture and transparency the central story.\n\nSome areas offer clearer windows, while others scatter light across fracture-like veils. As the beads move, these small differences create a gentle shimmer rather than one uniform shine. The simple round shape gives the eye a repeated rhythm, allowing the subtle variations inside each bead to become more noticeable over time.\n\nIce Halo is easy to place within a personal collection because its palette stays so open. Wear it as a bright accent or display it among darker mineral pieces to bring out their contrast. Its appeal rests in familiar elements brought together thoughtfully: a circle, clear material and a tiny winter landscape inside."
+    },
+    "slug": "ice-halo",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Round transparent colorless beads with dense internal fracture texture.",
+    "facts": {
+      "notes": [
+        "Round transparent colorless beads with dense internal fracture texture."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "cosmic-thread",
@@ -1164,7 +1516,27 @@
     "studioImages": [
       "/images/staged/cosmic-thread.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Cosmic Thread",
+      "subtitle": "Mixed inclusion quartz bracelet",
+      "summary": "Golden threads, smoky depths and clear facets form an eclectic little solar system.",
+      "description": "Golden threads, smoky depths and clear facets form an eclectic little solar system. Rounded beads carry needle-like detail in shades of bronze, gray and honey, while more angular clear beads introduce another way of catching light. The bracelet feels lively because its parts share a mood without all taking the same form.\n\nFollow the circle and the visual weight changes. A darker bead gives way to a warmer transparent one, then a bright faceted passage opens the composition again. Fine inclusions create small directional movements inside the smooth contours, adding detail that only becomes visible when the bracelet is viewed more closely.\n\nCosmic Thread is for those who enjoy a piece with several personalities in conversation. Its contrast comes from shape as much as color, and the shifting interiors keep the arrangement interesting. Think of each bead as a separate atmosphere, gathered into an orbit that feels warm, curious and pleasantly unlike a perfectly matched set."
+    },
+    "slug": "cosmic-thread",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Large clear, smoky and golden beads with needle-like inclusions plus faceted clear beads and charm.",
+    "facts": {
+      "notes": [
+        "Large clear, smoky and golden beads with needle-like inclusions plus faceted clear beads and charm."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "moon-basin",
@@ -1228,7 +1600,27 @@
     "studioImages": [
       "/images/staged/moon-basin.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Moon Basin",
+      "subtitle": "Clear quartz carved bowl",
+      "summary": "A shallow pool of captured light.",
+      "description": "A shallow, transparent basin turns empty space into part of the sculpture. Pale veils and a soft yellowish tint move through the clear walls, while the polished rim traces an irregular oval around the opening. It has the lightness of a small pool and the solid presence of a carved object.\n\nLooking through the bowl reveals overlapping layers of internal detail. Some passages appear almost open, while others scatter light into bright lines and cloudy patches. The curved interior changes those views again, giving the same material a different character at the rim, the sides and the base of the basin.\n\nLet Moon Basin hold a few tiny treasures, or leave the interior open so its form can be appreciated on its own. Its strongest feature is that relationship between a useful shape and a richly detailed material. A simple hollow becomes a place where light gathers, shifts and reveals the architecture of the carving."
+    },
+    "slug": "moon-basin",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Transparent carved oval bowl with fracture veils and pale yellow tint.",
+    "facts": {
+      "notes": [
+        "Transparent carved oval bowl with fracture veils and pale yellow tint."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "nebula-flame",
@@ -1280,7 +1672,27 @@
     "studioImages": [
       "/images/staged/nebula-flame.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Nebula Flame",
+      "subtitle": "Included stone freeform",
+      "summary": "A rising silhouette holds dusky greens, violet shadows and clear windows.",
+      "description": "An upright, tapering form rises from a darker mineral base into blue-violet shadows and clearer windows. Its outline suggests a flame caught in a still moment, but its interior feels more like a distant cloud of matter. The contrast between the smooth silhouette and the uneven color gives the piece its quiet tension.\n\nBrown and green passages gather more densely toward the lower area, while other sections allow light to travel further into the stone. These changes in transparency create the impression of layers without requiring the eye to resolve them into one image. Turn the freeform and a different balance of darkness, color and reflection comes forward.\n\nNebula Flame works beautifully where its outline has room to stand apart from its surroundings. It adds a sculptural note among spheres or a more organic counterpart to straight-edged objects. Its appeal is a slow revelation: first the shape, then the color, then the small, intricate worlds held inside."
+    },
+    "slug": "nebula-flame",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Polished upright flame with dark green/brown basal inclusions and blue-violet transmitted color.",
+    "facts": {
+      "notes": [
+        "Polished upright flame with dark green/brown basal inclusions and blue-violet transmitted color."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "first-snow",
@@ -1324,7 +1736,27 @@
     "studioImages": [
       "/images/staged/first-snow.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "First Snow",
+      "subtitle": "White crystal cluster",
+      "summary": "A gathering of pale crystal faces, bright as the first snow on stone.",
+      "description": "Pale crystal faces gather in a clustered form, with brighter edges rising from softer, clouded depths. The overall impression is snowy and luminous, but closer looking reveals small warm accents near the base. Those earthy notes give the piece a little contrast, grounding the lightness of its upper surfaces.\n\nUnlike a polished sphere, this cluster presents many different planes at once. Some catch a direct reflection; others remain more translucent or gently opaque. Their overlapping arrangement creates pockets of shadow and an irregular silhouette, allowing the piece to change character as the light moves around it throughout the day.\n\nFirst Snow brings a welcome difference in texture to a collection of smooth forms. Place it where its outline can be seen clearly, with enough surrounding space to appreciate the individual faces. It offers a small landscape of peaks, ledges and pale windows, a reminder of how much visual complexity can live within a restrained palette."
+    },
+    "slug": "first-snow",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "White translucent crystal cluster with flat faces; resolution insufficient for decisive crystal habit.",
+    "facts": {
+      "notes": [
+        "White translucent crystal cluster with flat faces; resolution insufficient for decisive crystal habit."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "earthbound-orbit",
@@ -1368,7 +1800,27 @@
     "studioImages": [
       "/images/staged/earthbound-orbit.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Earthbound Orbit",
+      "subtitle": "Dark inclusion bead bracelet",
+      "summary": "Forest shadows and warm mineral browns form an understated orbit.",
+      "description": "Forest shadows, smoky grays and warm mineral browns gather in an understated circle. The rounded beads share a dark, earthy mood, yet each contains its own distribution of color and internal detail. From a distance the bracelet feels cohesive; up close, it opens into a sequence of individual little landscapes.\n\nSome beads carry denser markings, while others allow a little more light into the interior. Those differences give the arrangement a gentle rhythm, with darker notes followed by warmer or more translucent ones. The polished surfaces keep the silhouette simple, letting the changing character of the material do most of the work.\n\nEarthbound Orbit suits a collection built around subtle color and tactile forms. It can sit comfortably beside warmer jewelry or provide a darker counterpoint to clear beads. Its charm lies in the small variations that resist perfect repetition, creating a wearable circle that feels connected to forests, weathered ground and the deeper colors of the evening."
+    },
+    "slug": "earthbound-orbit",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Round smoky, green-gray and brown beads with visible inclusions.",
+    "facts": {
+      "notes": [
+        "Round smoky, green-gray and brown beads with visible inclusions."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "golden-atmosphere",
@@ -1432,7 +1884,27 @@
     "studioImages": [
       "/images/staged/golden-atmosphere.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Golden Atmosphere",
+      "subtitle": "Clear inclusion quartz sphere",
+      "summary": "A transparent world scattered with bronze clouds.",
+      "description": "A transparent sphere holds scattered brown-gold patches, like small clouds drifting through an otherwise open sky. Fine internal planes cross the clearer areas, bringing another layer of detail to the view. The result feels spacious rather than crowded, with enough transparency for each suspended-looking feature to stand out.\n\nAs the sphere turns, the mineral patches change their relationship to one another. A darker mark may appear close to the surface, then seem to retreat into the interior from another angle. Pale fractures catch brief reflections along the way, adding lines of brightness to the warmer details without overwhelming them.\n\nGolden Atmosphere invites the kind of looking that follows one tiny feature through several perspectives. Give it a simple setting and let the clear body remain the focus. Its beauty comes from the space around the inclusions as much as the inclusions themselves, creating a small observatory for light, depth and the imagination."
+    },
+    "slug": "golden-atmosphere",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Transparent sphere with sparse brown-gold mineral patches and planar fractures.",
+    "facts": {
+      "notes": [
+        "Transparent sphere with sparse brown-gold mineral patches and planar fractures."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "solar-halo",
@@ -1488,7 +1960,27 @@
     "studioImages": [
       "/images/staged/solar-halo.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Solar Halo",
+      "subtitle": "Golden and peach inclusion bracelet",
+      "summary": "Peach, honey and fine golden threads gather in a warm circle.",
+      "description": "Peach, honey and clear golden tones gather in a warm circle, recalling the changing colors at the edge of sunset. Some beads hold fine thread-like inclusions, while others contain softer, clouded passages. Together they create a bracelet that feels luminous without relying on a single, uniform shade to make its impression.\n\nThe round shapes keep the rhythm familiar, allowing the differences inside each bead to become the main attraction. A brighter transparent section might follow a denser peach bead, then a golden one introduces a sharper glint. That movement between clarity and color gives the whole bracelet a lively, gently varied appearance.\n\nSolar Halo brings warmth to a personal collection, whether worn on its own or considered alongside cooler, clearer pieces. Its palette suggests late afternoon light passing through a row of little windows. Look closer and each window offers something different, from fine mineral lines to soft color gathered like a cloud."
+    },
+    "slug": "solar-halo",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Round clear gold and peach beads containing needles and cloudy warm inclusions.",
+    "facts": {
+      "notes": [
+        "Round clear gold and peach beads containing needles and cloudy warm inclusions."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "forest-moons",
@@ -1536,7 +2028,27 @@
     "studioImages": [
       "/images/staged/forest-moons.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Forest Moons",
+      "subtitle": "Moss-patterned sphere pair",
+      "summary": "Two little worlds share a palette of deep forest and milky cloud.",
+      "description": "Two rounded worlds share a palette of deep forest color and milky white, yet their patterns speak in different proportions. Dark patches create the first impression, while paler areas interrupt them like clouds moving across an imagined landscape. Seen together, the spheres form a conversation between related colors and individual markings.\n\nTheir polished surfaces make those contrasts especially clear. Green-black passages give way to softer whites, with irregular edges that keep the transition visually interesting. The eye can move from one sphere to the other, comparing a curve, a cloudy region or a dark accent without finding a perfectly repeated design.\n\nForest Moons offers the pleasure of a pair: enough similarity to belong together, enough variation to keep looking. Arrange them so each reveals a different balance of light and dark. Their shared atmosphere becomes more apparent side by side, like neighboring worlds shaped by the same palette but carrying their own distinct geography."
+    },
+    "slug": "forest-moons",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Video shows two small spheres with deep green-black areas and milky white patches; treated as a pair.",
+    "facts": {
+      "notes": [
+        "Video shows two small spheres with deep green-black areas and milky white patches; treated as a pair."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "wild-garden-carvings",
@@ -1584,7 +2096,27 @@
     "studioImages": [
       "/images/staged/wild-garden-carvings.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Wild Garden",
+      "subtitle": "Moss-patterned carving study",
+      "summary": "Sculptural forms emerge from a tangle of green, gray and soft blush.",
+      "description": "Green, gray and soft blush mingle across a gathering of carved forms. The mineral pattern moves through their contours in unexpected ways, sometimes emphasizing an edge and sometimes dissolving it into a more intricate field of color. The result feels like a small garden of sculptural shapes, each emerging from a shared visual language.\n\nSome passages appear densely mottled, while lighter areas give the eye room to rest. Polished curves bring out that variation, creating a contrast between the carefully shaped surfaces and the unpredictable markings within them. Viewed together, the forms invite attention to both the carving and the material from which it was made.\n\nWild Garden is best approached as a study in detail and character. Let the eye move slowly between the different silhouettes, then return to the color that connects them. The collection has a curious, storybook quality, as though familiar objects have been translated into the layered textures of an imagined woodland."
+    },
+    "slug": "wild-garden-carvings",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Video shows multiple green-gray figurative carvings and rounded object; exact object shapes require seller confirmation.",
+    "facts": {
+      "notes": [
+        "Video shows multiple green-gray figurative carvings and rounded object; exact object shapes require seller confirmation."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "night-bloom",
@@ -1632,7 +2164,27 @@
     "studioImages": [
       "/images/staged/night-bloom.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Night Bloom",
+      "subtitle": "Petite flower-patterned sphere",
+      "summary": "Pale blossoms seem to float inside a smoky night sky.",
+      "description": "Pale, flower-like shapes seem to float inside a smoky transparent world. Their cream tones stand out against darker passages, while rust-colored accents add a small note of warmth. The sphere has the intimacy of a garden glimpsed after dusk, when bright petals remain visible but the surrounding space grows deeper and more mysterious.\n\nA turn changes which plume-like markings are easiest to see. Some approach the surface; others appear suspended further inside, softened by the material around them. This shifting depth gives the pattern a different character from a flat design, allowing the stone to feel both decorative and quietly atmospheric at the same time.\n\nNight Bloom rewards a close view and a simple setting. Its details are small enough to invite attention, while the polished outline keeps the overall impression clear. Think of it as a tiny nocturnal landscape, where pale shapes, warm flecks and smoky windows gather into an unexpectedly delicate little world."
+    },
+    "slug": "night-bloom",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Small translucent smoky sphere with white flower-like plumes and rust accents; distinct from larger opaque orbicular sphere.",
+    "facts": {
+      "notes": [
+        "Small translucent smoky sphere with white flower-like plumes and rust accents; distinct from larger opaque orbicular sphere."
+      ],
+      "status": "needs_fact_check"
+    }
   },
   {
     "id": "woodland-companion",
@@ -1680,6 +2232,26 @@
     "studioImages": [
       "/images/staged/woodland-companion.jpg"
     ],
-    "stagingRevision": 2
+    "stagingRevision": 2,
+    "prototypeContent": {
+      "title": "Woodland Companion",
+      "subtitle": "Included quartz animal carving",
+      "summary": "A small creature shaped from a clouded woodland world.",
+      "description": "A small animal-like silhouette emerges from transparent, clouded material, bringing a playful shape to an intricate mineral interior. Brown-green inclusions gather within the polished contours, suggesting mossy shadows or a little piece of forest held in clear stone. The carving gives those markings a new setting without making them any less unpredictable.\n\nDifferent angles reveal different amounts of transparency. A clear passage may frame a darker area, while a curved surface catches a bright reflection that briefly conceals the detail below. Those shifts add to the character of the object, encouraging a closer look at both the silhouette and the small scenes inside it.\n\nWoodland Companion belongs among objects chosen for personality as much as polish. Place it where its outline can be appreciated, or let it provide a figurative note beside simpler mineral shapes. Its appeal is curious and intimate: a recognizable suggestion of a creature, carrying an entire little landscape within its contours."
+    },
+    "slug": "woodland-companion",
+    "nameStatus": "placeholder",
+    "copyStatus": "draft",
+    "storyStatus": "draft",
+    "factsStatus": "needs_fact_check",
+    "contentVersion": 1,
+    "availability": "unconfirmed",
+    "mediaAlt": "Transparent smoky animal-like carving with brown-green inclusions; species uncertain from video.",
+    "facts": {
+      "notes": [
+        "Transparent smoky animal-like carving with brown-green inclusions; species uncertain from video."
+      ],
+      "status": "needs_fact_check"
+    }
   }
 ]

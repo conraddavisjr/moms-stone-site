@@ -1,6 +1,6 @@
-# Astraea storefront
+# Sacred Bloom storefront
 
-See [the workspace README](../README.md) for the asset inventory and operating notes.
+See [CONTENT_NOTES.md](CONTENT_NOTES.md) for content authority, copy protection, migration, placeholders and launch boundaries. The [workspace README](../README.md) preserves the original asset inventory.
 
 Run with Node 24.18.0: `npm run dev`.
 

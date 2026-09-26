@@ -22,6 +22,23 @@ r=await req('/api/catalog',{method:'POST',body:JSON.stringify(updated)});assert.
 r=await req('/api/catalog',{method:'POST',body:JSON.stringify(updated)});assert.equal(r.status,409);
 r=await req('/api/admin?revisions=eclipse-garden');assert.ok((await r.json()).revisions.length);
 r=await req('/api/catalog',{method:'POST',body:JSON.stringify({...original,revision:saved.revision})});assert.equal(r.status,200);
+// Locked copy is enforced server-side, including attempts to strip protection metadata.
+const heart=adm.products.find(p=>p.id==='prismatic-heart');
+assert.equal((await req('/api/catalog',{method:'POST',body:JSON.stringify({...heart,description:'Unauthorized replacement'})})).status,409);
+assert.equal((await req('/api/catalog',{method:'POST',body:JSON.stringify({...heart,protectedFields:[]})})).status,409);
+let current=(await (await req('/api/admin')).json()).products.find(p=>p.id===original.id);
+const inventoryOriginal={...current};
+try {
+ r=await req('/api/catalog',{method:'POST',body:JSON.stringify({...current,unique:true,inventory:1,availability:'available'})});assert.equal(r.status,200);current=(await r.json()).product;
+ assert.equal((await req('/api/cart',{method:'POST',body:JSON.stringify({productId:original.id,delta:1})})).status,200);
+ assert.equal((await req('/api/cart',{method:'POST',body:JSON.stringify({productId:original.id,delta:1})})).status,409);
+ r=await req('/api/catalog',{method:'POST',body:JSON.stringify({...current,inventory:0,availability:'sold'})});assert.equal(r.status,200);current=(await r.json()).product;
+ assert.equal((await req('/api/cart',{method:'POST',body:JSON.stringify({productId:original.id,delta:1})})).status,409);
+} finally {
+ await req('/api/cart',{method:'POST',body:JSON.stringify({productId:original.id,delta:-1})});
+ r=await req('/api/catalog',{method:'POST',body:JSON.stringify({...inventoryOriginal,revision:current.revision})});assert.equal(r.status,200);
+}
+console.log('PASS locked copy API protection, one-of-one bag limit, sold-state rejection, and inventory restore.');
 const png=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=','base64');
 r=await req('/api/upload',{method:'POST',body:png,headers:{'Content-Type':'image/png','Content-Length':String(png.length),'X-File-Name':'smoke-test.png'}});assert.equal(r.status,200);const uploaded=await r.json();r=await req(uploaded.url);assert.equal(r.status,200);assert.equal(r.headers.get('content-type'),'image/png');assert.equal((await r.arrayBuffer()).byteLength,png.length);r=await req(uploaded.url,{headers:{Range:'bytes=0-7'}});assert.equal(r.status,206);assert.equal((await r.arrayBuffer()).byteLength,8);
 r=await req('/api/upload',{method:'POST',body:Buffer.from('fake image'),headers:{'Content-Type':'image/png','Content-Length':'10'}});assert.equal(r.status,400);

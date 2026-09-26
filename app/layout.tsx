@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Astraea — Earthbound Wonders",
-  description: "Discover a small universe of singular stones, polished spheres, and crystal wonders.",
+  title: "Sacred Bloom",
+  description: "Wonder is not something we create. It is something we notice.",
+  metadataBase: new URL("https://astraea-stones.conraddavisjr.chatgpt.site"),
+  robots: {index:false,follow:false},
   other: {
     "codex-preview": "development",
   },
