@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {updateBag,readBag,CartRequestTimeout} from '../lib/cart-request.ts';
+let calls=0;
+assert.deepEqual(await updateBag('heart',1,{fetcher:async()=>{calls++;return Response.json({items:{heart:1}})}}),{heart:1});assert.equal(calls,1);
+await assert.rejects(updateBag('heart',1,{fetcher:async()=>Response.json({error:'Sold out'},{status:409})}),/Sold out/);
+await assert.rejects(updateBag('heart',1,{fetcher:async()=>Response.json({items:null})}),/could not be confirmed/);
+await assert.rejects(updateBag('heart',1,{fetcher:async()=>{throw Error('Offline')}}),/Offline/);
+let signal;
+await assert.rejects(updateBag('heart',1,{timeoutMs:15,fetcher:async(_url,init)=>{signal=init.signal;return new Promise(()=>{})}}),CartRequestTimeout);assert.equal(signal.aborted,true);
+await assert.rejects(updateBag('heart',1,{timeoutMs:15,fetcher:async()=>({ok:true,json:()=>new Promise(()=>{})})}),CartRequestTimeout);
+assert.deepEqual(await readBag({fetcher:async()=>Response.json({items:{heart:1}})}),{heart:1});
+console.log('PASS bag success, server error, invalid response, offline, stalled request/body, abort, and readback.');

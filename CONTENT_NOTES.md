@@ -36,3 +36,9 @@ The first detail image is prioritized, subsequent images are lazy, original hand
 ## Validation
 
 Run Node 24: `node tests/content-policy.mjs`, `node tests/artwork-upgrade.mjs`, `node tests/api-smoke.mjs` against the local server, `node node_modules/typescript/bin/tsc --noEmit`, `npm run lint`, and the Sites build. API tests use reversible local edits to check protected copy, unique-item limits, sold state, recovery, uploads and persisted bags.
+
+## Bag recovery follow-up
+
+The reported stuck Add to my bag interaction corresponded to a production `/api/cart` response with HTTP 200 in 189 ms. Normal adds completed in isolated local development and production browsers, so the exact original client-side stall was not reproduced. The unbounded request path is now bounded to 12 seconds, including body parsing, and aborts cleanly. Errors clear pending feedback, release the button and display an inline explanation as well as the toast. My Bag refreshes server state when opened; requests are not automatically retried because an uncertain response may already represent a saved addition. Disabled inventory controls now use a normal cursor rather than implying an ongoing request.
+
+`tests/cart-request.mjs` covers success, rejection, malformed data, offline failure, stalled headers/body and readback. `tests/cart-browser.mjs` uses a provisioned Playwright install (`PLAYWRIGHT_MODULE` and optional `CHROME_TEST_EXECUTABLE`) to verify actual button and animation recovery for success, rejection and a held request. The test uses an isolated local browser context and mocked cart requests.
