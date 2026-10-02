@@ -41,8 +41,8 @@ export function isWonderCardId(v:unknown):v is number{return typeof v==='number'
 // Interface language for the ritual. New copy, written sparingly; it is editable (not part of the deck).
 export const wonderCopy={
  invitation:'One of these is yours. You will know it when you notice it.',
- ritual:'This is your card.',
- whisper:'You found it. Or perhaps it found you.',
+ ritual:'Your card.',
+ whisper:'It found you.',
  choice:'Keep it, and it travels with your order as a gift. Or let it go, and the cards will keep passing.',
  partWays:'Part ways',
  accept:'Accept',

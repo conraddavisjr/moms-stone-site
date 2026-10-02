@@ -38,6 +38,7 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
  const swipe=useRef<{id:number;startX:number;startY:number;x:number;time:number;velocity:number;dragging:boolean}|null>(null);
  const suppressClick=useRef(false);
  const restoringFocus=useRef(false);
+ const selectionOrigin=useRef<DOMRect|null>(null);
  const accepting=useRef(false),returnFocus=useRef<number|null>(null);
  // After parting ways, give focus back to the card once the procession is interactive again.
  useEffect(()=>{if(state.phase!=='procession'||returnFocus.current===null)return;restoringFocus.current=true;cards.current.get(returnFocus.current)?.focus({preventScroll:true});restoringFocus.current=false;returnFocus.current=null},[state.phase]);
@@ -80,7 +81,7 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
   return()=>{cancelAnimationFrame(raf);ro.disconnect()}
  },[reduced,order]);
 
- function select(id:number){if(phaseRef.current!=='procession')return;motion.current.seek=null;dispatch({type:'select',id});setAnnounce(`${wonderCardName(id)} selected.`);track('wonder_card_selected',`wonder-card-${id}`)}
+ function select(id:number){if(phaseRef.current!=='procession')return;selectionOrigin.current=cards.current.get(id)?.querySelector('.wcf')?.getBoundingClientRect()??null;motion.current.seek=null;dispatch({type:'select',id});setAnnounce(`${wonderCardName(id)} selected.`);track('wonder_card_selected',`wonder-card-${id}`)}
  function focusCard(id:number){if(reduced||restoringFocus.current||swipe.current)return;const m=motion.current,c=cards.current.get(id);if(!c)return;const r=c.getBoundingClientRect(),box=viewport.current!.getBoundingClientRect();m.seek=m.x+(box.left+box.width/2)-(r.left+r.width/2)}
 
  // Preserve vertical page scrolling. Only a horizontal touch gesture takes over the procession.
@@ -109,12 +110,23 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
   if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId);
  }
 
- // Reveal in place without carrying the card across the screen.
+ // Lift the chosen card from its actual carousel position, then reveal the invitation in beats.
  useLayoutEffect(()=>{
   if(state.phase!=='reveal'||!hero.current)return;
-  const steps:Animation[]=[hero.current.animate([{opacity:0},{opacity:1}],{duration:reduced?150:450,easing:'ease',fill:'backwards'})];
+  const h=hero.current,target=h.getBoundingClientRect(),origin=selectionOrigin.current;
+  const dx=origin?origin.left+origin.width/2-target.left-target.width/2:0;
+  const dy=origin?origin.top+origin.height/2-target.top-target.height/2:64;
+  const scale=origin?origin.width/target.width:.94;
+  const steps:Animation[]=[h.animate(reduced?[{opacity:0},{opacity:1}]:[
+   {transform:`translate(${dx}px,${dy}px) scale(${scale})`,filter:'blur(4px)',opacity:1},
+   {transform:'translate(0,-10px) scale(1.015)',filter:'blur(0px)',opacity:1,offset:.8},
+   {transform:'translate(0,0) scale(1)',filter:'blur(0px)',opacity:1}
+  ],{duration:reduced?150:850,easing:'cubic-bezier(.22,.8,.2,1)',fill:'backwards'})];
   stage.current?.querySelectorAll<HTMLElement>('[data-reveal]').forEach((n,i)=>{
-   steps.push(n.animate([{opacity:0},{opacity:1}],{duration:reduced?150:400,delay:reduced?0:100+i*65,easing:'ease',fill:'backwards'}))});
+   steps.push(n.animate(reduced?[{opacity:0},{opacity:1}]:[
+    {opacity:0,transform:`translateY(${n.matches('button')?22:12}px)`},
+    {opacity:1,transform:'translateY(0)'}
+   ],{duration:reduced?150:500,delay:reduced?0:450+i*130,easing:'cubic-bezier(.22,.8,.2,1)',fill:'backwards'}))});
   stage.current?.querySelector<HTMLElement>('#wonder-ritual-title')?.focus({preventScroll:true});
   return()=>steps.forEach(a=>a.cancel());
  // Only on entering the reveal; the error message re-renders inside it.
@@ -173,9 +185,9 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
     <p className="wonder-name" data-reveal="left">{wonderCardName(chosen.id)}</p>
     <p id="wonder-ritual-message" className="sr-only">{chosen.message}</p>
     <p className="wonder-choice" data-reveal="right">{wonderCopy.choice}</p>
-    <div className="wonder-actions" data-reveal="up">
-     <button type="button" className="wonder-part" onClick={partWays} disabled={state.phase!=='reveal'}>{wonderCopy.partWays}</button>
-     <button type="button" className="wonder-accept" onClick={accept} disabled={state.phase!=='reveal'} aria-busy={state.phase==='accepting'}>{state.phase==='accepting'?wonderCopy.accepting:wonderCopy.accept}</button>
+    <div className="wonder-actions">
+     <button type="button" className="wonder-part" data-reveal="up" onClick={partWays} disabled={state.phase!=='reveal'}>{wonderCopy.partWays}</button>
+     <button type="button" className="wonder-accept" data-reveal="up" onClick={accept} disabled={state.phase!=='reveal'} aria-busy={state.phase==='accepting'}>{state.phase==='accepting'?wonderCopy.accepting:wonderCopy.accept}</button>
     </div>
     {state.error&&<p className="wonder-error" role="alert">{state.error}</p>}
    </div>

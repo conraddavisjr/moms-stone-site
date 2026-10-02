@@ -36,7 +36,7 @@
 .wc-item:hover .wcf:after,.wc-item:focus-visible .wcf:after{opacity:1}
 .wc-item:focus-visible{outline:1px solid #d8bd87b3;outline-offset:10px}
 
-.phase-reveal .wonder-procession,.phase-accepting .wonder-procession,.phase-accepted .wonder-procession{filter:blur(6px) brightness(.45);opacity:.55;transform:scale(.97)}
+.phase-reveal .wonder-procession,.phase-accepting .wonder-procession,.phase-accepted .wonder-procession{filter:blur(6px) brightness(.45);opacity:0;transform:scale(.97)}
 .phase-arrival .wonder-procession{opacity:0}
 .wonder-ritual.still .wonder-procession{display:flex;gap:18px;height:auto;padding:110px 6%;overflow-x:auto;scroll-snap-type:x mandatory;--wc-w:min(82.88vw,380.8px)}
 .wonder-ritual.still .wc-item{position:relative;top:0;flex:none;scroll-snap-align:center}
