@@ -7,7 +7,7 @@ try{
  await page.goto(process.env.TEST_URL||'http://localhost:5173');await page.locator('.wc-item').first().waitFor();await page.waitForFunction(()=>Math.abs(Number(document.querySelector('.wonder-procession')?.dataset.speed)-39.1)<2,{},{timeout:30000});
  const speed=()=>page.locator('.wonder-procession').evaluate(el=>Number(el.dataset.speed));
  assert.ok(Math.abs(await speed()-39.1)<2,'mobile cruise is 15% faster');
- assert.equal(await page.locator('.wc-item .wcf').first().evaluate(el=>getComputedStyle(el).filter),'blur(4px)');
+ assert.equal(await page.locator('.wc-item .wcf').first().evaluate(el=>getComputedStyle(el).filter),'none');
  const cdp=await context.newCDPSession(page);
  const row=await page.locator('.wonder-procession').boundingBox(),y=Math.round(row.y+row.height/2);
  async function swipe(from,to){

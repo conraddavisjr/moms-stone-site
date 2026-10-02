@@ -99,7 +99,7 @@
 @keyframes stone-view-arrive{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.water-surface{display:none}.stone-discovery-entry{animation:none}}
 
-/* Keep the invitation mysterious until a card is opened. */
-.wonder-procession .wcf{filter:blur(4px);user-select:none}
+/* Keep card faces clear while preserving touch gestures. */
+.wonder-procession .wcf{user-select:none}
 .wonder-procession .wcf img{-webkit-user-drag:none}
 .wonder-ritual:not(.still) .wonder-procession{touch-action:pan-y}

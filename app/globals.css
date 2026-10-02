@@ -256,7 +256,7 @@ html,body{background:var(--sb-bg)}
 .nav-tabs a:after{content:"";position:absolute;inset-inline:0;bottom:2px;height:1px;background:var(--sb-accent);opacity:0}
 .nav-tabs a[data-state=active]{color:var(--sb-text)}
 .nav-tabs a[data-state=active]:after{opacity:1}
-#collection{scroll-margin-top:var(--masthead-height);position:relative;background:var(--sb-bg)}
+#collection{--sb-bg:#080b16;--sb-bg-raised:#0c1020;--sb-border:#252c3d;scroll-margin-top:var(--masthead-height);position:relative;background:var(--sb-bg)}
 .product-card[data-entrance]{transition:opacity 700ms ease,translate 850ms cubic-bezier(.22,.8,.2,1)}
 .product-card[data-entrance=waiting]{opacity:0;translate:0 32px}
 .product-card[data-entrance=shown],.product-card[data-entrance=waiting]:focus-within{opacity:1;translate:0 0}

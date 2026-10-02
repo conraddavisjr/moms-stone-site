@@ -120,7 +120,7 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
   const dy=origin?origin.top+origin.height/2-target.top-target.height/2:64;
   const scale=origin?origin.width/target.width:.94;
   const steps:Animation[]=[h.animate(reduced?[{opacity:0},{opacity:1}]:[
-   {transform:`translate(${dx}px,${dy}px) scale(${scale})`,filter:'blur(4px)',opacity:1},
+   {transform:`translate(${dx}px,${dy}px) scale(${scale})`,filter:'none',opacity:1},
    {transform:'translate(0,-10px) scale(1.015)',filter:'blur(0px)',opacity:1,offset:.8},
    {transform:'translate(0,0) scale(1)',filter:'blur(0px)',opacity:1}
   ],{duration:reduced?150:850,easing:'cubic-bezier(.22,.8,.2,1)',fill:'backwards'})];

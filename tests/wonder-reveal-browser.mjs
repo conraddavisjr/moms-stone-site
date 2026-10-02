@@ -11,7 +11,7 @@ try{
   const motion=await page.evaluate(()=>({hero:document.querySelector('.wonder-hero').getAnimations().map(a=>({frames:a.effect.getKeyframes(),duration:a.effect.getTiming().duration})),text:[...document.querySelectorAll('[data-reveal]')].map(el=>el.getAnimations().map(a=>({delay:a.effect.getTiming().delay,frames:a.effect.getKeyframes()}))[0])}));
   assert.equal(motion.hero.length,1);
   if(reducedMotion==='reduce'){assert.equal(motion.hero[0].duration,150);assert.ok(motion.text.every(t=>t.delay===0));}
-  else{assert.match(motion.hero[0].frames[0].transform,/translate/);assert.equal(motion.hero[0].frames[0].filter,'blur(4px)');assert.ok(motion.text.every((t,i)=>i===0||t.delay>motion.text[i-1].delay));assert.equal(motion.text.at(-1).frames[0].transform,'translateY(22px)');}
+  else{assert.match(motion.hero[0].frames[0].transform,/translate/);assert.equal(motion.hero[0].frames[0].filter,'none');assert.ok(motion.text.every((t,i)=>i===0||t.delay>motion.text[i-1].delay));assert.equal(motion.text.at(-1).frames[0].transform,'translateY(22px)');}
   await page.waitForTimeout(1500);assert.equal(await page.locator('#wonder-ritual-title').innerText(),'Your card.');assert.equal(await page.locator('.wonder-whisper').innerText(),'It found you.');
   assert.equal(await page.locator('.wonder-procession').evaluate(el=>getComputedStyle(el).opacity),'0');
   await page.screenshot({path:`/tmp/sb-reveal-${name}.png`});
