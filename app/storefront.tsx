@@ -28,7 +28,7 @@ export default function Storefront({initialView='discover',initialId,initialProd
  const [products,setProducts]=useState<Product[]>(()=>initialProduct?(seed as Product[]).map(p=>p.id===initialProduct.id?initialProduct:p).concat((seed as Product[]).some(p=>p.id===initialProduct.id)?[]:[initialProduct]):seed as Product[]),[view,setView]=useState(initialView),[index,setIndex]=useState(0),[paused,setPaused]=useState(false),[reduced,setReduced]=useState(false),[selected,setSelected]=useState<Product|null>(initialProduct||null),[query,setQuery]=useState(''),[cart,setCart]=useState<Record<string,number>>({}),[cartOpen,setCartOpen]=useState(false),[busy,setBusy]=useState(false),[loaded,setLoaded]=useState(false);
  const detailPanel=useRef<HTMLDivElement>(null),previousDetail=useRef<string|null>(null);
  const selectedId=selected?.id??null;
- useLayoutEffect(()=>{if(selectedId){detailPanel.current?.scrollTo({top:0,behavior:'instant'});if(previousDetail.current)detailPanel.current?.querySelector<HTMLElement>('.detail-title')?.focus({preventScroll:true})}previousDetail.current=selectedId},[selectedId]);
+ useLayoutEffect(()=>{if(selectedId){detailPanel.current?.querySelector<HTMLElement>('.detail-reading')?.scrollTo({top:0,behavior:'instant'});if(previousDetail.current)detailPanel.current?.querySelector<HTMLElement>('.detail-title')?.focus({preventScroll:true})}previousDetail.current=selectedId},[selectedId]);
  const touch=useRef({x:0,y:0}),swiped=useRef(false);
  const catalogAnchor=useRef<HTMLDivElement>(null),collectionSection=useRef<HTMLElement>(null),siteRoot=useRef<HTMLDivElement>(null);
  const [compactNav,setCompactNav]=useState(false);

@@ -263,7 +263,8 @@ html,body{background:var(--sb-bg)}
 @media(prefers-reduced-motion:reduce){.product-card[data-entrance]{opacity:1;translate:none;transition:none!important}}
 
 /* Detail-to-detail browsing keeps the reader inside the same panel. */
-.detail-reading{flex-shrink:0;animation:sb-panel-in 350ms ease both}
+.detail-reading{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scroll-padding-top:24px;animation:sb-panel-in 350ms ease both}
+.detail-reading>.detail-layout{overflow:visible;flex:none}
 .detail-title:focus{outline:none}
 .related-stones{margin:0 5%;padding:48px 0 64px;border-top:1px solid var(--sb-border)}
 .related-heading{margin-bottom:28px}.related-heading h2{font-size:clamp(30px,3vw,42px);margin:12px 0}.related-heading>p:last-child{font-size:14px;color:var(--sb-text-muted)}
