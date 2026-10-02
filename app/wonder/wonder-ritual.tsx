@@ -22,7 +22,6 @@ function ritual(s:State,a:Action):State{
   case 'accepted':return s.phase==='accepting'?{...s,phase:'accepted'}:s;
  }
 }
-const ease='cubic-bezier(.22,.8,.18,1)';
 function shuffled(){const ids=wonderCards.filter(c=>c.status==='locked').map(c=>c.id);for(let i=ids.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ids[i],ids[j]]=[ids[j],ids[i]]}return ids}
 // Deterministic small variations so the procession feels carried, not gridded.
 const lift=(id:number)=>Math.sin(id*1.7)*14,tilt=(id:number)=>Math.sin(id*2.3)*1.6,depth=(id:number)=>.94+((id*7)%5)*.015;
@@ -34,9 +33,10 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
  const viewport=useRef<HTMLDivElement>(null),cards=useRef<Map<number,HTMLButtonElement>>(new Map());
  const hero=useRef<HTMLDivElement>(null),stage=useRef<HTMLDivElement>(null);
  const motion=useRef({x:0,v:0,seek:null as number|null,w:300,gap:330,width:1000,hover:false,entered:false});
+ const restoringFocus=useRef(false);
  const accepting=useRef(false),returnFocus=useRef<number|null>(null);
  // After parting ways, give focus back to the card once the procession is interactive again.
- useEffect(()=>{if(state.phase!=='procession'||returnFocus.current===null)return;cards.current.get(returnFocus.current)?.focus({preventScroll:true});returnFocus.current=null},[state.phase]);
+ useEffect(()=>{if(state.phase!=='procession'||returnFocus.current===null)return;restoringFocus.current=true;cards.current.get(returnFocus.current)?.focus({preventScroll:true});restoringFocus.current=false;returnFocus.current=null},[state.phase]);
  const [announce,setAnnounce]=useState('');
  const phaseRef=useRef<Phase>('arrival');
  useEffect(()=>{phaseRef.current=state.phase},[state.phase]);
@@ -53,13 +53,13 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
   measure();m.x=m.width+24;const ro=new ResizeObserver(measure);ro.observe(el);
   let raf=0,last=performance.now();
   const frame=(now:number)=>{
-   const dt=Math.min((now-last)/1000,.05);last=now;const phase=phaseRef.current;
+   const dt=Math.min((now-last)/1000,.15);last=now;const phase=phaseRef.current;
    if(phase==='arrival'){m.v=0}
    else if(m.seek!==null){m.x+=(m.seek-m.x)*Math.min(1,dt*6);m.v=0}
    else{
     // Enter with momentum, then ease into a slow, graceful procession.
     if(!m.entered){m.entered=true;m.v=m.width<600?1500:2400}
-    const cruise=m.width<600?34:46,goal=phase==='procession'?(m.hover?10:cruise):5;
+    const cruise=m.width<600?34:46,goal=phase==='leaving'?cruise:phase==='procession'?(m.hover?10:cruise):5;
     m.v+=(goal-m.v)*(1-Math.exp(-dt/(m.v>goal?.8:1.6)));m.x-=m.v*dt}
    el.dataset.speed=m.v.toFixed(1);
    const total=order.length*m.gap;
@@ -75,7 +75,7 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
  },[reduced,order]);
 
  function select(id:number){if(phaseRef.current!=='procession')return;motion.current.seek=null;dispatch({type:'select',id});setAnnounce(`${wonderCardName(id)} selected.`);track('wonder_card_selected',`wonder-card-${id}`)}
- function focusCard(id:number){if(reduced)return;const m=motion.current,c=cards.current.get(id);if(!c)return;const r=c.getBoundingClientRect(),box=viewport.current!.getBoundingClientRect();m.seek=m.x+(box.left+box.width/2)-(r.left+r.width/2)}
+ function focusCard(id:number){if(reduced||restoringFocus.current)return;const m=motion.current,c=cards.current.get(id);if(!c)return;const r=c.getBoundingClientRect(),box=viewport.current!.getBoundingClientRect();m.seek=m.x+(box.left+box.width/2)-(r.left+r.width/2)}
 
  // Reveal in place without carrying the card across the screen.
  useLayoutEffect(()=>{
@@ -89,13 +89,16 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
  // eslint-disable-next-line react-hooks/exhaustive-deps
  },[state.phase==='reveal'&&state.selected]);
 
- // Part ways: the card drifts back into the night and the procession continues.
+ // Restore motion immediately while the overlay fades; the source card stays in its slot.
  useEffect(()=>{
-  if(state.phase!=='leaving')return;const id=state.selected!;const h=hero.current,s=stage.current;
-  const out=h?.animate(reduced?[{opacity:1},{opacity:0}]:[{opacity:1,transform:'none'},{opacity:0,transform:'translate(-6vw,4vh) scale(.82) rotate(-2deg)'}],{duration:reduced?350:750,easing:ease,fill:'forwards'});
-  s?.animate([{opacity:1},{opacity:0}],{duration:reduced?350:800,easing:'ease',fill:'forwards'});
-  const done=()=>{returnFocus.current=id;dispatch({type:'parted'});setAnnounce('The cards continue to pass.')};
-  if(out)out.onfinish=done;else done();
+  if(state.phase!=='leaving')return;
+  const id=state.selected!,s=stage.current,duration=reduced?150:400;
+  let finished=false;
+  const done=()=>{if(finished)return;finished=true;returnFocus.current=id;dispatch({type:'parted'});setAnnounce('The cards continue to pass.')};
+  const out=s?.animate([{opacity:1},{opacity:0}],{duration,easing:'ease',fill:'forwards'});
+  if(out)out.onfinish=done;
+  const fallback=setTimeout(done,duration+100);
+  return()=>{clearTimeout(fallback);out?.cancel()};
  },[state.phase,state.selected,reduced]);
 
  // Acceptance: acknowledge, then carry the card into the masthead where it stays as a keepsake.
@@ -117,7 +120,7 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
   catch(e){if(e instanceof WonderCardConflict){onConflict(e.cardId);return}dispatch({type:'failed',error:(e as Error).message})}
   finally{accepting.current=false}
  }
- function partWays(){if(state.phase!=='reveal')return;track('wonder_card_parted_ways',`wonder-card-${state.selected}`);dispatch({type:'part'})}
+ function partWays(){if(state.phase!=='reveal')return;track('wonder_card_parted_ways',`wonder-card-${state.selected}`);motion.current.hover=false;motion.current.seek=null;motion.current.v=motion.current.width<600?34:46;phaseRef.current='leaving';dispatch({type:'part'})}
  useEffect(()=>{if(state.phase!=='reveal')return;const key=(e:KeyboardEvent)=>{if(e.key==='Escape')partWays()};window.addEventListener('keydown',key);return()=>window.removeEventListener('keydown',key)});
 
  const chosen=wonderCard(state.selected),open=state.phase==='reveal'||state.phase==='leaving'||state.phase==='accepting'||state.phase==='accepted';
@@ -125,7 +128,7 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
   <CosmicSky/>
   <p className="wonder-invitation">{wonderCopy.invitation}</p>
   <div className="wonder-procession" ref={viewport} inert={open} aria-label="Wonder Cards" role="group">
-   {order.map((id,k)=>{const card=wonderCard(id)!;return <button key={id} type="button" className={`wc-item${state.selected===id&&open?' is-chosen':''}`} ref={el=>{if(el)cards.current.set(id,el);else cards.current.delete(id)}} style={reduced?undefined:{transform:`translate3d(${2000+k*400}px,0,0)`}} aria-label={`${wonderCardName(id)}: ${card.message}`} onClick={()=>select(id)} onPointerEnter={()=>{motion.current.hover=true}} onPointerLeave={()=>{motion.current.hover=false}} onFocus={()=>focusCard(id)} onBlur={()=>{motion.current.seek=null}}>
+   {order.map((id,k)=>{const card=wonderCard(id)!;return <button key={id} type="button" className="wc-item" ref={el=>{if(el)cards.current.set(id,el);else cards.current.delete(id)}} style={reduced?undefined:{transform:`translate3d(${2000+k*400}px,0,0)`}} aria-label={`${wonderCardName(id)}: ${card.message}`} onClick={()=>select(id)} onPointerEnter={()=>{motion.current.hover=true}} onPointerLeave={()=>{motion.current.hover=false}} onFocus={()=>focusCard(id)} onBlur={()=>{motion.current.seek=null}}>
     <WonderCardFace card={card} eager={k<6}/>
    </button>})}
   </div>

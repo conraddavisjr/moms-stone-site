@@ -84,3 +84,14 @@ The outer discovery view still contains horizontal movement within the viewport.
 Wonder Card reveals, stone details, and keepsake recollections fade into place.
 Unconfirmed card 9 is excluded from the procession until its wording is confirmed; its source record remains intact.
 The publish includes the visual studio, 24 card images, and the append-only Wonder Card migration.
+
+## Water interaction and collection layout, Oct 2, 2026
+
+The Wonder Card background now uses a decorative WebGL water shader with pointer ripples and a low-resolution, reduced-cadence idle render path.
+Intro text stays accessible HTML, with a temporary SVG displacement filter on pointer movement nearby; cards never receive that filter.
+The renderer releases GPU resources on unmount, pauses when hidden or offscreen, and falls back to the static atmosphere for reduced motion or unavailable WebGL.
+Part ways immediately resumes cruising, retains the source card in its carousel slot, and fades the overlay out with a completion fallback.
+Stone discovery fades in after the ritual.
+The collection alternates top-aligned two-card and three-card rows on desktop and uses responsive feature rows on smaller screens.
+The centered oval search has a shadow-free frosted backdrop and sticks below a compact header; navigation font sizes stay unchanged, and the active underline sits close to its label.
+`tests/water-collection-browser.mjs` covers WebGL and fallback paths, unaffected cards, text ripples, card return, the new layout, sticky alignment, compact navigation, and preserved font sizes.

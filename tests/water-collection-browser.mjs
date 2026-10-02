@@ -1,0 +1,39 @@
+import assert from 'node:assert/strict';
+import {mkdirSync} from 'node:fs';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
+const base=process.env.TEST_URL||'http://localhost:5173',shots=process.env.SHOTS_DIR||'/tmp/sb-water';mkdirSync(shots,{recursive:true});
+const browser=await chromium.launch({headless:true,args:['--enable-unsafe-swiftshader']});
+try{
+ const context=await browser.newContext({viewport:{width:1440,height:1000}}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(base);await page.locator('canvas[data-renderer=webgl]').waitFor();await page.waitForTimeout(6500);
+ const title=page.locator('.brand-philosophy'),box=await title.boundingBox();
+ await page.mouse.move(box.x+box.width*.4,box.y+box.height*.5);await page.waitForTimeout(90);
+ assert.ok(Number(await page.locator('feDisplacementMap').getAttribute('scale'))>0,'hover text ripples');
+ assert.equal(await page.locator('.wcf').first().evaluate(el=>getComputedStyle(el).filter),'none','card faces are not distorted');
+ await page.screenshot({path:shots+'/water-desktop.png'});
+ const choose=await page.evaluate(()=>{const b=[...document.querySelectorAll('.wc-item')].find(el=>{const r=el.getBoundingClientRect();return r.left>250&&r.right<1200});const r=b.getBoundingClientRect();return {label:b.getAttribute('aria-label'),x:r.x+r.width/2,y:r.y+r.height/2}});
+ await page.mouse.click(choose.x,choose.y);await page.getByRole('dialog').waitFor();
+ const source=page.getByRole('button',{name:choose.label,exact:true,includeHidden:true});assert.equal(await source.evaluate(el=>getComputedStyle(el).visibility),'visible','selected card leaves no gap');
+ await page.getByRole('button',{name:'Part ways',exact:true}).click();
+ const speed=await page.locator('.wonder-procession').getAttribute('data-speed');assert.ok(Number(speed)>=30,'cruise resumes during departure');
+ await page.getByRole('dialog').waitFor({state:'hidden'});assert.equal(await source.evaluate(el=>getComputedStyle(el).visibility),'visible');
+ await page.getByRole('button',{name:'Wander the stones instead'}).click();
+ const frames=await page.locator('.stone-discovery-entry').evaluate(el=>el.getAnimations().flatMap(a=>a.effect.getKeyframes()));assert.ok(frames.some(f=>f.opacity==='0'),'stone view fades in');
+ await page.getByRole('tab',{name:'Collection',exact:true}).click();assert.equal(await page.locator('.water-surface').count(),0,'GPU layer unmounts outside ritual');
+ const widths=await page.locator('.product-grid>.product-card').evaluateAll(es=>es.slice(0,5).map(e=>e.getBoundingClientRect().width));assert.ok(widths[0]>widths[2]*1.3,'two large cards followed by three smaller cards');
+ await page.waitForFunction(()=>getComputedStyle(document.querySelector('.catalog')).opacity==='1');
+ const rows=await page.locator('.product-grid>.product-card .card-image').evaluateAll(es=>es.slice(0,5).map(e=>e.getBoundingClientRect().top));assert.equal(rows[0],rows[1],'large cards top align');assert.equal(rows[2],rows[3]);assert.equal(rows[3],rows[4]);
+ const expandedHeight=await page.locator('.masthead').evaluate(el=>el.getBoundingClientRect().height),navFont=await page.getByRole('tab',{name:'Collection',exact:true}).evaluate(el=>getComputedStyle(el).fontSize);
+ await page.screenshot({path:shots+'/collection-desktop.png',fullPage:false});
+ await page.evaluate(()=>scrollTo(0,950));await page.waitForTimeout(400);
+ const sticky=await page.locator('.catalog-toolbar').boundingBox(),nav=await page.locator('.masthead').boundingBox();assert.ok(Math.abs(sticky.y-(nav.y+nav.height))<2,'search sticks below masthead');
+ assert.ok(nav.height<expandedHeight*.75,'header compacts at sticky threshold');assert.equal(await page.getByRole('tab',{name:'Collection',exact:true}).evaluate(el=>getComputedStyle(el).fontSize),navFont,'navigation text does not shrink');
+ const glass=await page.locator('.search').evaluate(el=>({shadow:getComputedStyle(el).boxShadow,backdrop:getComputedStyle(el).backdropFilter}));assert.equal(await page.getByRole('tab',{name:'Collection',exact:true}).evaluate(el=>getComputedStyle(el,'::after').bottom),'2px','underline hugs the compact navigation label');assert.equal(glass.shadow,'none');assert.match(glass.backdrop,/blur/);await page.screenshot({path:shots+'/sticky-glass.png'});
+ const search=await page.locator('.search').boundingBox();assert.ok(Math.abs(search.x+search.width/2-720)<2,'search remains centered');
+ await page.getByRole('textbox',{name:'Search the collection'}).fill('quartz');assert.ok(await page.locator('.product-card').count()>0);await page.getByRole('button',{name:'Clear search'}).click();
+ for(const width of [390,768]){await page.setViewportSize({width,height:844});await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(350);await page.screenshot({path:shots+`/collection-${width}.png`});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);}
+ await context.close();
+ const reduced=await browser.newContext({reducedMotion:'reduce',viewport:{width:390,height:844}}),rp=await reduced.newPage();await rp.goto(base);await rp.locator('.wc-item').first().waitFor();assert.equal(await rp.locator('canvas[data-renderer=webgl]').count(),0);await rp.screenshot({path:shots+'/reduced-mobile.png'});await reduced.close();
+ const fallback=await browser.newContext();await fallback.addInitScript(()=>{const original=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type,...args){return type==='webgl'?null:original.call(this,type,...args)}});const fp=await fallback.newPage();await fp.goto(base);await fp.locator('.wc-item').first().waitFor();assert.equal(await fp.locator('canvas[data-renderer=webgl]').count(),0);assert.ok(await fp.locator('.brand-philosophy').isVisible());await fallback.close();
+ assert.deepEqual(errors,[]);console.log('PASS WebGL shimmer, text-only distortion, seamless return, Discover fade, varied grid, sticky search, mobile, reduced-motion and WebGL fallback');
+}finally{await browser.close()}

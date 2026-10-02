@@ -215,3 +215,37 @@ html,body{background:var(--sb-bg)}
 @keyframes sb-panel-in{from{opacity:0}to{opacity:1}}
 @keyframes sb-panel-out{from{opacity:1}to{opacity:0}}
 @media(prefers-reduced-motion:reduce){.detail-sheet[data-state],.wonder-recollection[data-state]{animation-duration:1ms}}
+
+/* A quiet floating search and a repeating two-piece / three-piece collection rhythm. */
+.catalog-toolbar{position:sticky;top:var(--masthead-height);z-index:30;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border:0;padding:18px 0 24px;margin-bottom:20px;background:linear-gradient(var(--sb-bg) 0%,#0b0b0ce8 76%,#0b0b0c00)}
+.catalog-toolbar .catalog-count{justify-self:start;font-size:12px;color:var(--sb-text-muted)}
+.catalog-toolbar .search{grid-column:2;justify-self:center;display:flex;gap:13px;width:clamp(280px,32vw,440px);padding:15px 23px;border-radius:999px;border:1px solid #c1af8c38;background:#19191bef;box-shadow:0 8px 30px #0004;backdrop-filter:blur(16px);color:var(--sb-accent);transition:border-color 250ms,box-shadow 250ms}
+.catalog-toolbar .search:focus-within{border-color:var(--sb-accent);box-shadow:0 0 0 3px #c1af8c16,0 8px 30px #0004}
+.catalog-toolbar .search input{flex:1;min-width:0;width:100%;color:var(--sb-text);font-size:14px;outline:none}
+.catalog-toolbar .search button{display:grid;place-items:center;min-width:24px;min-height:24px}
+.catalog .product-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:58px 28px;align-items:start}
+.catalog .product-grid>.product-card{grid-column:span 2;min-width:0}
+.catalog .product-grid>.product-card:nth-child(5n+1),.catalog .product-grid>.product-card:nth-child(5n+2){grid-column:span 3}
+.catalog .product-grid>.product-card:nth-child(5n+1) .card-image,.catalog .product-grid>.product-card:nth-child(5n+2) .card-image{aspect-ratio:1.1}
+@media(max-width:900px){.catalog .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 22px}.catalog .product-grid>.product-card:nth-child(n){grid-column:span 1}.catalog .product-grid>.product-card:nth-child(5n+1){grid-column:1/-1;max-width:75%;width:100%;justify-self:center}.catalog-toolbar{grid-template-columns:1fr auto 1fr}.catalog-toolbar .catalog-count{font-size:10px}}
+@media(max-width:600px){.catalog-toolbar{display:flex;flex-direction:column-reverse;gap:9px;padding:12px 0 17px;margin-bottom:12px}.catalog-toolbar .search{width:min(100%,350px);padding:12px 19px}.catalog .product-grid{gap:35px 15px}.catalog .product-grid>.product-card:nth-child(5n+1){max-width:100%}.catalog-toolbar .catalog-count{font-size:10px}.catalog .product-grid>.product-card:nth-child(5n+1) .card-title h2{font-size:25px}}
+
+/* Frosted search stays below a quieter masthead once it reaches the sticky edge. */
+.catalog-search-anchor{height:0;pointer-events:none}
+.catalog-toolbar{background:transparent;transition:top 260ms ease}
+.catalog-toolbar .search{background:linear-gradient(135deg,#47474b75,#2424289c);border-color:#eeeadc24;box-shadow:none;backdrop-filter:blur(24px) saturate(135%);-webkit-backdrop-filter:blur(24px) saturate(135%);transition:border-color 250ms,background 250ms}
+.catalog-toolbar .search:focus-within{box-shadow:none;border-color:var(--sb-accent);background:#303034b3}
+.site .masthead{transition:height 260ms ease,padding 260ms ease,background-color 400ms ease,color 400ms ease,border-color 400ms ease}
+.site .masthead .brand{transition:font-size 260ms ease}
+.site.nav-compact{--compact-nav-height:64px}
+.site.nav-compact .masthead{height:var(--compact-nav-height);padding-top:8px;padding-bottom:8px}
+.site.nav-compact .masthead .brand{font-size:22px}
+.site.nav-compact .catalog-toolbar{top:var(--compact-nav-height)}
+@media(max-width:600px){.site.nav-compact{--compact-nav-height:calc(86px + env(safe-area-inset-top))}.site.nav-compact .masthead{padding-top:calc(8px + env(safe-area-inset-top));padding-bottom:6px}.site.nav-compact .masthead .brand{font-size:19px}.site.nav-compact .masthead .nav-tabs{margin-top:2px}}
+@media(prefers-reduced-motion:reduce){.site .masthead,.site .masthead .brand,.catalog-toolbar{transition:none}}
+.site.nav-compact .nav-tabs button{height:auto;padding:6px 0!important}
+.site.nav-compact .nav-tabs button:after{bottom:2px!important}
+
+.catalog-heading .catalog-count{font-size:12px;color:var(--sb-text-muted);margin-top:16px;display:block}
+/* Release the entrance animation's backdrop boundary so the glass blurs passing cards. */
+.catalog{animation-fill-mode:backwards}

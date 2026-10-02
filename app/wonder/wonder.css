@@ -35,7 +35,7 @@
 .wc-item:hover .wcf,.wc-item:focus-visible .wcf{transform:translateY(-8px)}
 .wc-item:hover .wcf:after,.wc-item:focus-visible .wcf:after{opacity:1}
 .wc-item:focus-visible{outline:1px solid #d8bd87b3;outline-offset:10px}
-.wc-item.is-chosen{visibility:hidden}
+
 .phase-reveal .wonder-procession,.phase-accepting .wonder-procession,.phase-accepted .wonder-procession{filter:blur(6px) brightness(.45);opacity:.55;transform:scale(.97)}
 .phase-arrival .wonder-procession{opacity:0}
 .wonder-ritual.still .wonder-procession{display:flex;gap:18px;height:auto;padding:110px 6%;overflow-x:auto;scroll-snap-type:x mandatory;--wc-w:min(82.88vw,380.8px)}
@@ -89,3 +89,12 @@
 
 /* Clip the travelling row at the viewport, not at the glow’s local bounds. */
 .wonder-procession{isolation:isolate}
+
+/* Water and live text share pointer energy; the cards are an independent layer. */
+.water-surface{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:0;transition:opacity 900ms ease}
+.discovery[data-water-ready=true] .water-surface{opacity:1}
+.water-filter-definitions{position:absolute;pointer-events:none}
+.discovery[data-water-text-active=true] .brand-philosophy,.discovery[data-water-text-active=true] .wonder-invitation{filter:var(--water-text-filter)}
+.stone-discovery-entry{display:flex;flex-direction:column;flex:1;min-height:0;animation:stone-view-arrive 900ms ease both}
+@keyframes stone-view-arrive{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.water-surface{display:none}.stone-discovery-entry{animation:none}}
