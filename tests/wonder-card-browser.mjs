@@ -15,6 +15,14 @@ async function clickCenterCard(page){
 async function run(name,{viewport,reducedMotion='no-preference'}){
  const context=await browser.newContext({viewport,reducedMotion});const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto(base+'/');await page.locator('.wc-item').first().waitFor();
+ assert.equal(await page.locator('.wc-item').count(),24,'only confirmed cards enter the procession');
+ assert.equal(await page.getByRole('button',{name:/^Wonder Card 9:/}).count(),0);
+ if(reducedMotion==='no-preference'){
+  const layout=await page.locator('.wonder-procession').evaluate(el=>({width:el.clientWidth,card:parseFloat(getComputedStyle(el).getPropertyValue('--wc-w')),overflow:getComputedStyle(el).overflow}));
+  const original=layout.width<600?Math.min(layout.width*.8,360):Math.min(Math.max(layout.width*.24,240),400);
+  assert.equal(layout.card,Math.round(original*1.12));assert.equal(layout.overflow,'visible','hover glow must not be clipped by the row');
+ }
+
  if(reducedMotion==='no-preference'){
   // Fast arrival that decelerates into a slow procession.
   await page.waitForFunction(()=>!document.querySelector('.phase-arrival'));

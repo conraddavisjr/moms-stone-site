@@ -27,8 +27,8 @@
 /* The ritual and its procession. */
 .wonder-ritual{display:flex;flex-direction:column;flex:1;min-height:0}
 .wonder-invitation{position:relative;z-index:2;text-align:center;font-size:13px;letter-spacing:.04em;color:#a7adbf;margin:-2px auto 0;padding:0 20px;max-width:46ch;line-height:1.7;animation:wonder-fade 1.6s ease .4s both}
-.wonder-procession{position:relative;z-index:2;flex:none;height:calc(var(--wc-w,300px)*.6667 + 92px);margin:auto 0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);transition:filter .8s ease,opacity .8s ease,transform .8s ease}
-.wc-item{position:absolute;left:0;top:44px;width:var(--wc-w,300px);padding:0;border:0;background:none;color:inherit;border-radius:12px;will-change:transform;filter:drop-shadow(0 18px 28px #000000a6)}
+.wonder-procession{position:relative;z-index:2;flex:none;height:calc(var(--wc-w,300px)*.6667 + 144px);margin:auto 0;overflow:visible;transition:filter .8s ease,opacity .8s ease,transform .8s ease}
+.wc-item{position:absolute;left:0;top:72px;width:var(--wc-w,300px);padding:0;border:0;background:none;color:inherit;border-radius:12px;will-change:transform;filter:drop-shadow(0 18px 28px #000000a6)}
 .wc-item:before{content:"";position:absolute;inset:-22% -14%;z-index:-1;pointer-events:none;border-radius:50%;background:radial-gradient(ellipse at 50% 55%,#ecd09a73 30%,#c65db24d 52%,#6a4fd024 66%,transparent 74%);filter:blur(30px);opacity:0;transform:scale(.86);transition:opacity .7s ease,transform 1s cubic-bezier(.22,.8,.18,1)}
 .wcf:after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;border-radius:inherit;box-shadow:inset 0 0 0 1px #f1dca6cc,inset 0 0 2.4cqi #ffe2a826,inset 0 -1.2cqi 3cqi #d36fc21f;opacity:0;transition:opacity .7s ease}
 .wc-item:hover:before,.wc-item:focus-visible:before{opacity:1;transform:scale(1)}
@@ -38,7 +38,7 @@
 .wc-item.is-chosen{visibility:hidden}
 .phase-reveal .wonder-procession,.phase-accepting .wonder-procession,.phase-accepted .wonder-procession{filter:blur(6px) brightness(.45);opacity:.55;transform:scale(.97)}
 .phase-arrival .wonder-procession{opacity:0}
-.wonder-ritual.still .wonder-procession{display:flex;gap:18px;height:auto;padding:30px 6%;overflow-x:auto;scroll-snap-type:x mandatory;--wc-w:min(74vw,340px)}
+.wonder-ritual.still .wonder-procession{display:flex;gap:18px;height:auto;padding:110px 6%;overflow-x:auto;scroll-snap-type:x mandatory;--wc-w:min(82.88vw,380.8px)}
 .wonder-ritual.still .wc-item{position:relative;top:0;flex:none;scroll-snap-align:center}
 .wonder-wander,.wonder-return{position:relative;z-index:3;align-self:center;display:inline-flex;align-items:center;gap:9px;margin:14px auto 26px;padding:0 0 7px;font-size:12px;letter-spacing:.08em;color:#9aa3b8;border-bottom:1px solid #b8a07855;transition:color .3s}
 .wonder-wander:hover,.wonder-return:hover{color:#e2d6bb}
@@ -86,3 +86,6 @@
 @media(min-width:601px){.site .masthead{display:grid;grid-template-columns:1fr auto 1fr}.site .mast-actions{justify-self:end}}
 @media(max-width:900px){.wonder-keepsake-label{display:none}.mast-actions{gap:18px}}
 @media(max-width:600px){.wonder-actions{width:100%}.wonder-actions button{flex:1;min-width:0}.wonder-hero{width:min(100%,calc((100svh - 380px)*1.5))}.wonder-ritual-line{font-size:28px}.wonder-bag-line{grid-template-columns:104px minmax(0,1fr);gap:14px;padding:14px}.wonder-keepsake-card{width:50px}}
+
+/* Clip the travelling row at the viewport, not at the glow’s local bounds. */
+.wonder-procession{isolation:isolate}

@@ -54,3 +54,33 @@ The homepage Discover view opens with the Wonder Card ritual until a visitor acc
 - Analytics: `wonder_card_experience_started`, `_selected`, `_parted_ways`, `_accepted`, `_added_to_cart`, `_viewed_from_nav` (product id `wonder-card-N`).
 - Validation: `tests/wonder-card-browser.mjs` (Playwright via `PLAYWRIGHT_MODULE`) runs desktop, mobile and reduced-motion flows against the local server: arrival speed vs cruise, keyboard select/Escape focus return, part ways not persisted, accept, refresh persistence, single $0 bag line, second card refused, no replacement controls.
 - Reduced motion: no procession movement; cards sit in a scrollable row and the reveal uses short fades. There is no customer-facing reset; for local testing delete the session's row from `wonder_cards` or clear the `astraea_session` cookie.
+
+### Artwork integration, Oct 1, 2026
+
+24 cards now have reviewed artwork and matching 1536x1024 WebP assets; only card 9 remains pending wording and subject confirmation.
+Cards 24 and 25 were generated with the built-in imagegen tool from the subjects and style in `generation-prompts.json`.
+Originals remain in `../curated-products/wonder-cards/originals/`.
+Run `node scripts/optimize-wonder-cards.mjs` to convert newly added originals at WebP quality 82.
+The converter preserves existing outputs and rejects originals outside the 3:2 aspect ratio.
+
+## Visual studio, Oct 1, 2026
+
+The admin now presents the collection as image-led cards using the storefront typography, responsive cover assets, and saved framing.
+Titles, prices, subtitles, and summaries edit in place with explicit save/cancel controls; stories edit in the details dialog.
+Enter saves single-line fields; multiline fields use the save button or Command/Control+Enter, and Escape cancels.
+Protected copy stays read-only, failed saves retain input, and server revision checks reject stale edits.
+Images open a modal for uploads, cover selection, gallery membership, focus, zoom, and AI-staged labeling.
+Publication, specimen facts, inventory, editorial status, revisions, analytics, and catalog import/export remain available.
+New stones begin as unpublished drafts with unconfirmed prices and facts.
+`tests/studio-browser.mjs` checks real local persistence, conflicts, protected copy, image framing, revision history, export, and phone/tablet layout.
+Draft creation and upload-selection UI checks mock their writes; `tests/api-smoke.mjs` verifies real upload/readback and server protections separately.
+The browser suite restores its edited product afterward.
+TypeScript, content-policy, artwork-upgrade, API smoke, browser checks, and the production build pass; lint reports zero errors and image-element warnings.
+
+## Hosted update, Oct 2, 2026
+
+Procession cards are 12% larger, with visible overflow so the hover glow is not clipped by the row.
+The outer discovery view still contains horizontal movement within the viewport.
+Wonder Card reveals, stone details, and keepsake recollections fade into place.
+Unconfirmed card 9 is excluded from the procession until its wording is confirmed; its source record remains intact.
+The publish includes the visual studio, 24 card images, and the append-only Wonder Card migration.

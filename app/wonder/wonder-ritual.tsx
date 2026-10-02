@@ -23,7 +23,7 @@ function ritual(s:State,a:Action):State{
  }
 }
 const ease='cubic-bezier(.22,.8,.18,1)';
-function shuffled(){const ids=wonderCards.map(c=>c.id);for(let i=ids.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ids[i],ids[j]]=[ids[j],ids[i]]}return ids}
+function shuffled(){const ids=wonderCards.filter(c=>c.status==='locked').map(c=>c.id);for(let i=ids.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ids[i],ids[j]]=[ids[j],ids[i]]}return ids}
 // Deterministic small variations so the procession feels carried, not gridded.
 const lift=(id:number)=>Math.sin(id*1.7)*14,tilt=(id:number)=>Math.sin(id*2.3)*1.6,depth=(id:number)=>.94+((id*7)%5)*.015;
 
@@ -32,7 +32,7 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
  const [state,dispatch]=useReducer(ritual,{phase:'arrival',selected:null,error:''});
  const [order]=useState(shuffled);
  const viewport=useRef<HTMLDivElement>(null),cards=useRef<Map<number,HTMLButtonElement>>(new Map());
- const hero=useRef<HTMLDivElement>(null),stage=useRef<HTMLDivElement>(null),origin=useRef<DOMRect|null>(null);
+ const hero=useRef<HTMLDivElement>(null),stage=useRef<HTMLDivElement>(null);
  const motion=useRef({x:0,v:0,seek:null as number|null,w:300,gap:330,width:1000,hover:false,entered:false});
  const accepting=useRef(false),returnFocus=useRef<number|null>(null);
  // After parting ways, give focus back to the card once the procession is interactive again.
@@ -49,7 +49,7 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
  // The procession. Positions are written straight to transforms in one rAF loop (no React renders).
  useEffect(()=>{
   if(reduced)return;const el=viewport.current;if(!el)return;const m=motion.current;
-  const measure=()=>{m.width=el.clientWidth;m.w=Math.round(m.width<600?Math.min(m.width*.8,360):Math.min(Math.max(m.width*.24,240),400));m.gap=Math.round(m.w*(m.width<600?1.08:1.12));el.style.setProperty('--wc-w',`${m.w}px`)};
+  const measure=()=>{m.width=el.clientWidth;m.w=Math.round(1.12*(m.width<600?Math.min(m.width*.8,360):Math.min(Math.max(m.width*.24,240),400)));m.gap=Math.round(m.w*(m.width<600?1.08:1.12));el.style.setProperty('--wc-w',`${m.w}px`)};
   measure();m.x=m.width+24;const ro=new ResizeObserver(measure);ro.observe(el);
   let raf=0,last=performance.now();
   const frame=(now:number)=>{
@@ -74,18 +74,15 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
   return()=>{cancelAnimationFrame(raf);ro.disconnect()}
  },[reduced,order]);
 
- function select(id:number){if(phaseRef.current!=='procession')return;const c=cards.current.get(id);origin.current=c?.getBoundingClientRect()||null;motion.current.seek=null;dispatch({type:'select',id});setAnnounce(`${wonderCardName(id)} selected.`);track('wonder_card_selected',`wonder-card-${id}`)}
+ function select(id:number){if(phaseRef.current!=='procession')return;motion.current.seek=null;dispatch({type:'select',id});setAnnounce(`${wonderCardName(id)} selected.`);track('wonder_card_selected',`wonder-card-${id}`)}
  function focusCard(id:number){if(reduced)return;const m=motion.current,c=cards.current.get(id);if(!c)return;const r=c.getBoundingClientRect(),box=viewport.current!.getBoundingClientRect();m.seek=m.x+(box.left+box.width/2)-(r.left+r.width/2)}
 
- // Reveal: the touched card leaves the procession and settles at center (FLIP), then the words arrive.
+ // Reveal in place without carrying the card across the screen.
  useLayoutEffect(()=>{
-  if(state.phase!=='reveal'||!hero.current)return;const h=hero.current,from=origin.current,to=h.getBoundingClientRect();
-  const steps:Animation[]=[];
-  if(from&&!reduced){const dx=from.left+from.width/2-(to.left+to.width/2),dy=from.top+from.height/2-(to.top+to.height/2),s=from.width/to.width;
-   steps.push(h.animate([{transform:`translate(${dx}px,${dy}px) scale(${s})`,filter:'brightness(1)'},{transform:'translate(0,0) scale(1)',filter:'brightness(1.06)',offset:.8},{transform:'none',filter:'brightness(1)'}],{duration:1050,easing:ease,fill:'backwards'}))}
-  else steps.push(h.animate([{opacity:0},{opacity:1}],{duration:500,easing:'ease',fill:'backwards'}));
-  stage.current?.querySelectorAll<HTMLElement>('[data-reveal]').forEach((n,i)=>{const dir=n.dataset.reveal;const t=reduced?'none':dir==='left'?'translateX(-18px)':dir==='right'?'translateX(18px)':dir==='down'?'translateY(-10px)':'translateY(12px)';
-   steps.push(n.animate([{opacity:0,transform:t},{opacity:1,transform:'none'}],{duration:reduced?400:800,delay:(reduced?150:700)+i*(reduced?90:260),easing:ease,fill:'backwards'}))});
+  if(state.phase!=='reveal'||!hero.current)return;
+  const steps:Animation[]=[hero.current.animate([{opacity:0},{opacity:1}],{duration:reduced?150:450,easing:'ease',fill:'backwards'})];
+  stage.current?.querySelectorAll<HTMLElement>('[data-reveal]').forEach((n,i)=>{
+   steps.push(n.animate([{opacity:0},{opacity:1}],{duration:reduced?150:400,delay:reduced?0:100+i*65,easing:'ease',fill:'backwards'}))});
   stage.current?.querySelector<HTMLElement>('#wonder-ritual-title')?.focus({preventScroll:true});
   return()=>steps.forEach(a=>a.cancel());
  // Only on entering the reveal; the error message re-renders inside it.

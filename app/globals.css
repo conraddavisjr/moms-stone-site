@@ -208,3 +208,10 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .site [data-slot=sheet-content],.cart-sheet,.detail-sheet,.wonder-recollection{border-color:var(--sb-border)!important}
 .brand-philosophy,.discover-intro h1{text-wrap:balance}
 html,body{background:var(--sb-bg)}
+
+/* Detail and keepsake panels appear in place rather than sliding across the view. */
+.detail-sheet[data-state=open],.wonder-recollection[data-state=open]{animation:sb-panel-in 350ms ease both}
+.detail-sheet[data-state=closed],.wonder-recollection[data-state=closed]{animation:sb-panel-out 200ms ease both}
+@keyframes sb-panel-in{from{opacity:0}to{opacity:1}}
+@keyframes sb-panel-out{from{opacity:1}to{opacity:0}}
+@media(prefers-reduced-motion:reduce){.detail-sheet[data-state],.wonder-recollection[data-state]{animation-duration:1ms}}
