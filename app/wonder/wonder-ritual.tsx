@@ -56,9 +56,11 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
   if(reduced)return;const el=viewport.current;if(!el)return;const m=motion.current;
   const measure=()=>{m.width=el.clientWidth;m.w=Math.round(1.12*(m.width<600?Math.min(m.width*.8,360):Math.min(Math.max(m.width*.24,240),400)));m.gap=Math.round(m.w*(m.width<600?1.08:1.12));el.style.setProperty('--wc-w',`${m.w}px`)};
   measure();m.x=m.width+24;const ro=new ResizeObserver(measure);ro.observe(el);
-  let raf=0,last=performance.now();
+  let raf=0,last=performance.now(),inView=true;
+  const visibility=new IntersectionObserver(([entry])=>{inView=entry.isIntersecting});visibility.observe(el);
   const frame=(now:number)=>{
    const dt=Math.min((now-last)/1000,.15);last=now;const phase=phaseRef.current;
+   if(!inView||document.hidden){raf=requestAnimationFrame(frame);return}
    if(phase==='arrival'){m.v=0}
    else if(swipe.current?.dragging){m.v=0}
    else if(m.seek!==null){m.x+=(m.seek-m.x)*Math.min(1,dt*6);m.v=0}
@@ -78,7 +80,7 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
     c.style.transform=`translate3d(${p.toFixed(1)}px,${lift(id).toFixed(1)}px,0) rotate(${tilt(id).toFixed(2)}deg) scale(${depth(id)})`});
    raf=requestAnimationFrame(frame)};
   raf=requestAnimationFrame(frame);
-  return()=>{cancelAnimationFrame(raf);ro.disconnect()}
+  return()=>{cancelAnimationFrame(raf);ro.disconnect();visibility.disconnect()}
  },[reduced,order]);
 
  function select(id:number){if(phaseRef.current!=='procession')return;selectionOrigin.current=cards.current.get(id)?.querySelector('.wcf')?.getBoundingClientRect()??null;motion.current.seek=null;dispatch({type:'select',id});setAnnounce(`${wonderCardName(id)} selected.`);track('wonder_card_selected',`wonder-card-${id}`)}

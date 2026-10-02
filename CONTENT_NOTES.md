@@ -95,3 +95,11 @@ Stone discovery fades in after the ritual.
 The collection alternates top-aligned two-card and three-card rows on desktop and uses responsive feature rows on smaller screens.
 The centered oval search has a shadow-free frosted backdrop and sticks below a compact header; navigation font sizes stay unchanged, and the active underline sits close to its label.
 `tests/water-collection-browser.mjs` covers WebGL and fallback paths, unaffected cards, text ripples, card return, the new layout, sticky alignment, compact navigation, and preserved font sizes.
+
+## Continuous Discover and Collection
+
+Discover and Collection now share one page and one product grid.
+The primary navigation scrolls between sections and follows the current scroll position; `/catalog` opens at the collection.
+Collection cards reveal once as they enter the viewport, with short staggered opacity and upward-motion transitions; reduced motion and keyboard focus show cards immediately.
+The Wonder Card procession pauses its transform updates while offscreen.
+`tests/discover-collection-browser.mjs` verifies the continuous layout, section navigation, entrances, sticky search, filtering, direct links, and mobile/reduced-motion behavior.
