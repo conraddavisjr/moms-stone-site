@@ -1,5 +1,5 @@
 "use client";
-import {useEffect,useLayoutEffect,useReducer,useRef,useState} from 'react';
+import {useEffect,useLayoutEffect,useReducer,useRef,useState,type PointerEvent} from 'react';
 import {createPortal} from 'react-dom';
 import WonderCardFace from './wonder-card-face';
 import CosmicSky from './cosmic-sky';
@@ -26,13 +26,17 @@ function shuffled(){const ids=wonderCards.filter(c=>c.status==='locked').map(c=>
 // Deterministic small variations so the procession feels carried, not gridded.
 const lift=(id:number)=>Math.sin(id*1.7)*14,tilt=(id:number)=>Math.sin(id*2.3)*1.6,depth=(id:number)=>.94+((id*7)%5)*.015;
 
+const cruiseSpeed=(width:number)=>width<600?34*1.15:46;
+
 type Props={reduced:boolean;onAccepted:(id:number)=>void;onLanded:()=>void;onConflict:(id:number)=>void;track:(type:string,productId?:string)=>void};
 export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,track}:Props){
  const [state,dispatch]=useReducer(ritual,{phase:'arrival',selected:null,error:''});
  const [order]=useState(shuffled);
  const viewport=useRef<HTMLDivElement>(null),cards=useRef<Map<number,HTMLButtonElement>>(new Map());
  const hero=useRef<HTMLDivElement>(null),stage=useRef<HTMLDivElement>(null);
- const motion=useRef({x:0,v:0,seek:null as number|null,w:300,gap:330,width:1000,hover:false,entered:false});
+ const motion=useRef({x:0,v:0,seek:null as number|null,w:300,gap:330,width:1000,hover:false,entered:false,looping:false});
+ const swipe=useRef<{id:number;startX:number;startY:number;x:number;time:number;velocity:number;dragging:boolean}|null>(null);
+ const suppressClick=useRef(false);
  const restoringFocus=useRef(false);
  const accepting=useRef(false),returnFocus=useRef<number|null>(null);
  // After parting ways, give focus back to the card once the procession is interactive again.
@@ -55,19 +59,21 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
   const frame=(now:number)=>{
    const dt=Math.min((now-last)/1000,.15);last=now;const phase=phaseRef.current;
    if(phase==='arrival'){m.v=0}
+   else if(swipe.current?.dragging){m.v=0}
    else if(m.seek!==null){m.x+=(m.seek-m.x)*Math.min(1,dt*6);m.v=0}
    else{
     // Enter with momentum, then ease into a slow, graceful procession.
-    if(!m.entered){m.entered=true;m.v=m.width<600?1500:2400}
-    const cruise=m.width<600?34:46,goal=phase==='leaving'?cruise:phase==='procession'?(m.hover?10:cruise):5;
-    m.v+=(goal-m.v)*(1-Math.exp(-dt/(m.v>goal?.8:1.6)));m.x-=m.v*dt}
+    if(!m.entered){m.entered=true;m.v=m.width<600?1725:2400}
+    const cruise=cruiseSpeed(m.width),goal=phase==='leaving'?cruise:phase==='procession'?(m.hover?10:cruise):5;
+    m.v+=(goal-m.v)*(1-Math.exp(-dt/(Math.abs(m.v)>goal?.8:1.6)));m.x-=m.v*dt}
    el.dataset.speed=m.v.toFixed(1);
    const total=order.length*m.gap;
    // Endless loop: keep the offset within one full cycle (positions are modulo the deck, so nothing moves).
-   if(m.seek===null&&m.entered&&m.x< -total)m.x+=total;
+   if(m.x<0)m.looping=true;
+   if(m.seek===null&&m.entered){if(m.x< -total)m.x+=total;else if(m.x>total)m.x-=total;}
    order.forEach((id,k)=>{const c=cards.current.get(id);if(!c)return;
     // A card returns to the right only after it has fully left on the left.
-    let p=k*m.gap+m.x;if(p<-m.gap)p=((p+m.gap)%total+total)%total-m.gap;
+    let p=k*m.gap+m.x;if(m.looping||p<-m.gap)p=((p+m.gap)%total+total)%total-m.gap;
     c.style.transform=`translate3d(${p.toFixed(1)}px,${lift(id).toFixed(1)}px,0) rotate(${tilt(id).toFixed(2)}deg) scale(${depth(id)})`});
    raf=requestAnimationFrame(frame)};
   raf=requestAnimationFrame(frame);
@@ -75,7 +81,33 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
  },[reduced,order]);
 
  function select(id:number){if(phaseRef.current!=='procession')return;motion.current.seek=null;dispatch({type:'select',id});setAnnounce(`${wonderCardName(id)} selected.`);track('wonder_card_selected',`wonder-card-${id}`)}
- function focusCard(id:number){if(reduced||restoringFocus.current)return;const m=motion.current,c=cards.current.get(id);if(!c)return;const r=c.getBoundingClientRect(),box=viewport.current!.getBoundingClientRect();m.seek=m.x+(box.left+box.width/2)-(r.left+r.width/2)}
+ function focusCard(id:number){if(reduced||restoringFocus.current||swipe.current)return;const m=motion.current,c=cards.current.get(id);if(!c)return;const r=c.getBoundingClientRect(),box=viewport.current!.getBoundingClientRect();m.seek=m.x+(box.left+box.width/2)-(r.left+r.width/2)}
+
+ // Preserve vertical page scrolling. Only a horizontal touch gesture takes over the procession.
+ function swipeStart(e:PointerEvent<HTMLDivElement>){
+  suppressClick.current=false;
+  if(reduced||e.pointerType==='mouse'||!e.isPrimary||phaseRef.current!=='procession')return;
+  suppressClick.current=false;motion.current.seek=null;motion.current.hover=false;
+  swipe.current={id:e.pointerId,startX:e.clientX,startY:e.clientY,x:e.clientX,time:e.timeStamp,velocity:0,dragging:false};
+ }
+ function swipeMove(e:PointerEvent<HTMLDivElement>){
+  const s=swipe.current;if(!s||s.id!==e.pointerId)return;
+  const dx=e.clientX-s.startX,dy=e.clientY-s.startY;
+  if(!s.dragging){
+   if(Math.abs(dy)>8&&Math.abs(dy)>Math.abs(dx)){swipe.current=null;return}
+   if(Math.abs(dx)<8)return;
+   s.dragging=true;suppressClick.current=true;motion.current.looping=true;e.currentTarget.setPointerCapture(e.pointerId);
+  }
+  const elapsed=Math.max(1,e.timeStamp-s.time),delta=e.clientX-s.x;
+  s.velocity=Math.max(-2600,Math.min(2600,-delta/elapsed*1000));
+  motion.current.x+=delta;motion.current.seek=null;s.x=e.clientX;s.time=e.timeStamp;
+ }
+ function swipeEnd(e:PointerEvent<HTMLDivElement>){
+  const s=swipe.current;if(!s||s.id!==e.pointerId)return;
+  if(s.dragging)motion.current.v=e.type==='pointercancel'?cruiseSpeed(motion.current.width):s.velocity*Math.exp(-Math.max(0,e.timeStamp-s.time-50)/100);
+  swipe.current=null;
+  if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId);
+ }
 
  // Reveal in place without carrying the card across the screen.
  useLayoutEffect(()=>{
@@ -120,15 +152,15 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
   catch(e){if(e instanceof WonderCardConflict){onConflict(e.cardId);return}dispatch({type:'failed',error:(e as Error).message})}
   finally{accepting.current=false}
  }
- function partWays(){if(state.phase!=='reveal')return;track('wonder_card_parted_ways',`wonder-card-${state.selected}`);motion.current.hover=false;motion.current.seek=null;motion.current.v=motion.current.width<600?34:46;phaseRef.current='leaving';dispatch({type:'part'})}
+ function partWays(){if(state.phase!=='reveal')return;track('wonder_card_parted_ways',`wonder-card-${state.selected}`);motion.current.hover=false;motion.current.seek=null;motion.current.v=cruiseSpeed(motion.current.width);phaseRef.current='leaving';dispatch({type:'part'})}
  useEffect(()=>{if(state.phase!=='reveal')return;const key=(e:KeyboardEvent)=>{if(e.key==='Escape')partWays()};window.addEventListener('keydown',key);return()=>window.removeEventListener('keydown',key)});
 
  const chosen=wonderCard(state.selected),open=state.phase==='reveal'||state.phase==='leaving'||state.phase==='accepting'||state.phase==='accepted';
  return <div className={`wonder-ritual phase-${state.phase}${reduced?' still':''}`}>
   <CosmicSky/>
   <p className="wonder-invitation">{wonderCopy.invitation}</p>
-  <div className="wonder-procession" ref={viewport} inert={open} aria-label="Wonder Cards" role="group">
-   {order.map((id,k)=>{const card=wonderCard(id)!;return <button key={id} type="button" className="wc-item" ref={el=>{if(el)cards.current.set(id,el);else cards.current.delete(id)}} style={reduced?undefined:{transform:`translate3d(${2000+k*400}px,0,0)`}} aria-label={`${wonderCardName(id)}: ${card.message}`} onClick={()=>select(id)} onPointerEnter={()=>{motion.current.hover=true}} onPointerLeave={()=>{motion.current.hover=false}} onFocus={()=>focusCard(id)} onBlur={()=>{motion.current.seek=null}}>
+  <div className="wonder-procession" ref={viewport} onPointerDown={swipeStart} onPointerMove={swipeMove} onPointerUp={swipeEnd} onPointerCancel={swipeEnd} onLostPointerCapture={swipeEnd} onClickCapture={e=>{if(suppressClick.current&&e.detail!==0){e.preventDefault();e.stopPropagation();suppressClick.current=false}}} inert={open} aria-label="Wonder Cards" role="group">
+   {order.map((id,k)=>{const card=wonderCard(id)!;return <button key={id} type="button" className="wc-item" ref={el=>{if(el)cards.current.set(id,el);else cards.current.delete(id)}} style={reduced?undefined:{transform:`translate3d(${2000+k*400}px,0,0)`}} aria-label={`${wonderCardName(id)}: ${card.message}`} onClick={()=>select(id)} onPointerEnter={e=>{if(e.pointerType==='mouse')motion.current.hover=true}} onPointerLeave={()=>{motion.current.hover=false}} onFocus={()=>focusCard(id)} onBlur={()=>{motion.current.seek=null}}>
     <WonderCardFace card={card} eager={k<6}/>
    </button>})}
   </div>

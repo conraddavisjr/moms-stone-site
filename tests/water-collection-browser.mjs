@@ -9,7 +9,7 @@ try{
  const title=page.locator('.brand-philosophy'),box=await title.boundingBox();
  await page.mouse.move(box.x+box.width*.4,box.y+box.height*.5);await page.waitForTimeout(90);
  assert.ok(Number(await page.locator('feDisplacementMap').getAttribute('scale'))>0,'hover text ripples');
- assert.equal(await page.locator('.wcf').first().evaluate(el=>getComputedStyle(el).filter),'none','card faces are not distorted');
+ assert.equal(await page.locator('.wcf').first().evaluate(el=>getComputedStyle(el).filter),'blur(4px)','card faces stay softly blurred without water distortion');
  await page.screenshot({path:shots+'/water-desktop.png'});
  const choose=await page.evaluate(()=>{const b=[...document.querySelectorAll('.wc-item')].find(el=>{const r=el.getBoundingClientRect();return r.left>250&&r.right<1200});const r=b.getBoundingClientRect();return {label:b.getAttribute('aria-label'),x:r.x+r.width/2,y:r.y+r.height/2}});
  await page.mouse.click(choose.x,choose.y);await page.getByRole('dialog').waitFor();
