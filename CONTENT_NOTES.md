@@ -103,3 +103,10 @@ The primary navigation scrolls between sections and follows the current scroll p
 Collection cards reveal once as they enter the viewport, with short staggered opacity and upward-motion transitions; reduced motion and keyboard focus show cards immediately.
 The Wonder Card procession pauses its transform updates while offscreen.
 `tests/discover-collection-browser.mjs` verifies the continuous layout, section navigation, entrances, sticky search, filtering, direct links, and mobile/reduced-motion behavior.
+
+## Related item browsing
+
+Every item detail includes up to four related published, unsold products, excluding itself and collection references.
+`lib/related-products.ts` ranks overlap in existing mineral descriptions and uses catalog order as a stable fallback; the UI does not assert new mineral facts.
+Related links switch the existing detail panel to the next item, reset its scroll and focus, and support browser Back and opening links in a new tab.
+`tests/related-stones-browser.mjs` covers desktop and mobile recommendations, item transitions, focus, Back, and closing the panel.
