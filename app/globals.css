@@ -182,7 +182,7 @@ body {
 @media(max-width:600px){.site{--masthead-height:calc(110px + env(safe-area-inset-top))}.masthead{padding-top:calc(19px + env(safe-area-inset-top))}.detail-layout{display:flex;flex-direction:column;padding:20px 6% 45px;gap:20px}.detail-media,.detail-copy{width:100%}.detail-copy{position:static;padding:0}.detail-header{min-height:65px;height:calc(65px + env(safe-area-inset-top))}.detail-primary img{max-height:none}.media-grid{grid-template-columns:1fr}.media-grid video{aspect-ratio:4/5;max-height:65svh}.reference-photos .media-grid{grid-template-columns:1fr 1fr}.lightbox-carousel figure>.detail-film{height:calc(100svh - 185px)}.bag-stardust{bottom:100px}.detail-price{margin-top:28px}}
 @media(prefers-reduced-motion:reduce){.arrival-mist,.arrival-dust{display:none}.celestial.center img,.bag-star-core,.bag-star-orbit,.bag-stardust.complete{animation:none!important}.bag-stardust.complete{opacity:1}.discovery-progress{display:none}}
 /* Sacred Bloom — retain the established composition, quiet the surrounding vessel. */
-:root{--sb-bg:#171818;--sb-bg-raised:#202221;--sb-text:#eeeae1;--sb-text-muted:#b3b0a7;--sb-border:#454840;--sb-accent:#c1af8c;--sb-accent-soft:#34372f;--sb-focus:#dbc69c;--sb-overlay:#111312ed}
+:root{--sb-bg:#0b0b0c;--sb-bg-raised:#151517;--sb-text:#eeeae1;--sb-text-muted:#b3b0a7;--sb-border:#2e2e32;--sb-accent:#c1af8c;--sb-accent-soft:#1d1d20;--sb-focus:#dbc69c;--sb-overlay:#0b0b0ced}
 .site,.site.night,.site.day{background:var(--sb-bg);color:var(--sb-text);--foreground:var(--sb-text);--background:var(--sb-bg)}
 .site .masthead,.site.day .masthead,.detail-header{background:var(--sb-bg);color:var(--sb-text);border-color:var(--sb-border)}
 .brand{letter-spacing:.045em;font-size:27px;white-space:nowrap}.brand-star{font-size:22px;color:var(--sb-accent)}
@@ -205,3 +205,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 @media(max-width:600px){.brand{font-size:22px}.brand-philosophy{font-size:26px!important}.discover-intro{padding-left:30px;padding-right:30px}.card-title h2{font-size:20px}.card-summary{font-size:14px}.card-title>span{font-size:13px}.detail-subtitle{font-size:16px!important}.story{font-size:16px}.detail-layout{padding-bottom:calc(45px + env(safe-area-inset-bottom))}.masthead .brand-star{display:none}}
 
 .bag-error{font-size:14px;line-height:1.6;margin-top:14px;color:var(--sb-text)}
+.site [data-slot=sheet-content],.cart-sheet,.detail-sheet,.wonder-recollection{border-color:var(--sb-border)!important}
+.brand-philosophy,.discover-intro h1{text-wrap:balance}
+html,body{background:var(--sb-bg)}

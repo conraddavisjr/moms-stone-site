@@ -61,7 +61,10 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
     if(!m.entered){m.entered=true;m.v=m.width<600?1500:2400}
     const cruise=m.width<600?34:46,goal=phase==='procession'?(m.hover?10:cruise):5;
     m.v+=(goal-m.v)*(1-Math.exp(-dt/(m.v>goal?.8:1.6)));m.x-=m.v*dt}
+   el.dataset.speed=m.v.toFixed(1);
    const total=order.length*m.gap;
+   // Endless loop: keep the offset within one full cycle (positions are modulo the deck, so nothing moves).
+   if(m.seek===null&&m.entered&&m.x< -total)m.x+=total;
    order.forEach((id,k)=>{const c=cards.current.get(id);if(!c)return;
     // A card returns to the right only after it has fully left on the left.
     let p=k*m.gap+m.x;if(p<-m.gap)p=((p+m.gap)%total+total)%total-m.gap;

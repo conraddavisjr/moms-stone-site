@@ -26,6 +26,23 @@ async function run(name,{viewport,reducedMotion='no-preference'}){
   assert.ok(early>late*2,`arrival should be faster than the cruise (${early.toFixed(0)}px vs ${late.toFixed(0)}px)`);
   assert.ok(late>10&&late<160,`cruise should drift slowly (${late.toFixed(0)}px over 1.5s)`);
   console.log(`PASS ${name}: arrival ${early.toFixed(0)}px in 0.8s, cruise ${late.toFixed(0)}px in 1.5s`);
+  // Endless loop: the card furthest left wraps to the tail of the line, one gap after the last card.
+  const ring=()=>page.evaluate(()=>[...document.querySelectorAll('.wc-item')].map(b=>({l:b.getAttribute('aria-label').split(':')[0],x:b.getBoundingClientRect().left})));
+  const before=await ring();const lead=before.reduce((a,b)=>b.x<a.x?b:a);
+  await page.waitForFunction(l=>{const b=[...document.querySelectorAll('.wc-item')].find(e=>e.getAttribute('aria-label').startsWith(l+':'));return b&&b.getBoundingClientRect().left>innerWidth},lead.l,{timeout:30000});
+  const after=await ring();const back=after.find(c=>c.l===lead.l),others=after.filter(c=>c.l!==lead.l).map(c=>c.x),tail=Math.max(...others);
+  const step=(Math.max(...after.map(c=>c.x))-Math.min(...after.map(c=>c.x)))/(after.length-1);
+  assert.ok(back.x>tail&&Math.abs(back.x-tail-step)<step*.2,`${lead.l} should re-enter as the new tail (gap ${(back.x-tail).toFixed(0)}px vs ${step.toFixed(0)}px)`);
+  console.log(`PASS ${name}: ${lead.l} looped to the tail`);
+  // Hover slows the procession; leaving eases back up rather than snapping (pointer devices only).
+  if(viewport.width>600){
+  const speed=()=>page.evaluate(()=>Number(document.querySelector('.wonder-procession')?.dataset.speed));
+  const mid=await page.evaluate(()=>{for(const b of document.querySelectorAll('.wc-item')){const r=b.getBoundingClientRect();if(r.left>innerWidth*.3&&r.right<innerWidth*.9)return {x:r.left+r.width/2,y:r.top+r.height/2}}});
+  await page.mouse.move(mid.x,mid.y);await page.waitForTimeout(2600);const slow=await speed();
+  await page.mouse.move(5,5);await page.waitForTimeout(300);const easing=await speed();await page.waitForTimeout(2600);const resumed=await speed();
+  assert.ok(slow<16,`hover should slow the procession (${slow})`);assert.ok(easing>slow&&easing<resumed-5,`leaving should ease back (${easing} then ${resumed})`);
+  console.log(`PASS ${name}: hover ${slow}px/s, eased ${easing} -> ${resumed}px/s`);
+  }
  }
  await snap(page,`${name}-1-procession`);
  // Keyboard: Tab reaches a card, Enter opens the reveal, Escape parts ways and returns focus.
@@ -36,7 +53,7 @@ async function run(name,{viewport,reducedMotion='no-preference'}){
  assert.equal(await page.evaluate(()=>document.activeElement?.getAttribute('aria-label')),focused,'focus returns to the card');
  await page.mouse.move(5,5);await page.evaluate(()=>document.activeElement?.blur());await page.waitForTimeout(800);
  // Select, then part ways.
- const first=await clickCenterCard(page);const dialog=page.getByRole('dialog');await dialog.waitFor();
+ await clickCenterCard(page);const dialog=page.getByRole('dialog');await dialog.waitFor();
  await page.waitForTimeout(2600);await snap(page,`${name}-2-reveal`);
  assert.equal(await page.evaluate(()=>document.activeElement?.id),'wonder-ritual-title');
  await page.getByRole('button',{name:'Part ways'}).click();await dialog.waitFor({state:'detached'});
