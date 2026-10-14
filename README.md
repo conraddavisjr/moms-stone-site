@@ -1,5 +1,7 @@
 # Sacred Bloom storefront
 
+Start with [REPOSITORY_GUIDE.md](REPOSITORY_GUIDE.md) for repository boundaries, Wonder Card assets, and the distinction between GitHub source and Sites deployments.
+
 See [CONTENT_NOTES.md](CONTENT_NOTES.md) for content authority, copy protection, migration, placeholders and launch boundaries. The [workspace README](../README.md) preserves the original asset inventory.
 
 Run with Node 24.18.0: `npm run dev`.

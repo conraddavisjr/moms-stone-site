@@ -42,3 +42,71 @@ Run Node 24: `node tests/content-policy.mjs`, `node tests/artwork-upgrade.mjs`, 
 The reported stuck Add to my bag interaction corresponded to a production `/api/cart` response with HTTP 200 in 189 ms. Normal adds completed in isolated local development and production browsers, so the exact original client-side stall was not reproduced. The unbounded request path is now bounded to 12 seconds, including body parsing, and aborts cleanly. Errors clear pending feedback, release the button and display an inline explanation as well as the toast. My Bag refreshes server state when opened; requests are not automatically retried because an uncertain response may already represent a saved addition. Disabled inventory controls now use a normal cursor rather than implying an ongoing request.
 
 `tests/cart-request.mjs` covers success, rejection, malformed data, offline failure, stalled headers/body and readback. `tests/cart-browser.mjs` uses a provisioned Playwright install (`PLAYWRIGHT_MODULE` and optional `CHROME_TEST_EXECUTABLE`) to verify actual button and animation recovery for success, rejection and a held request. The test uses an isolated local browser context and mocked cart requests.
+
+## Wonder Card ritual (lush forest deck)
+
+The homepage Discover view opens with the Wonder Card ritual until a visitor accepts a card: arrival, a right-to-left procession that enters fast and slows to a drift, selection, a centered reveal, then Part ways or Accept. Accepting is final; the card flies into the masthead as a keepsake and the existing stone discovery returns. Visitors can also choose "Wander the stones instead".
+
+- `content/wonder-cards.ts` is the single source of truth: ids 1-25, exact protected messages, art alt text, status. Card 9 ("You Are a Divine Expression of Love.") is **unconfirmed**: its number was cut off in the supplied crop. Confirm it before launch. The lush cards have no separate titles; the display name is "Wonder Card N". New interface language (`wonderCopy`) is editable, not deck wording.
+- Artwork is text-free. Drop each final image at `public/images/wonder-cards/NN.webp` (for example `07.webp`, 3:2 landscape, subject in the left 55%). No code change is needed: the card renders its number, message, divider, lotus and SACRED BLOOM wordmark in HTML over the right side. Until an image exists, the card shows a crafted text-only face. Prompts: `../curated-products/wonder-cards/generation-prompts.json`. The supplied 307x205 web crops were not used: they include slivers of neighboring cards, are off by one, and miss card 9.
+- Persistence: `wonder_cards` (D1) holds one card per bag session (primary key on the session cookie), so acceptance is idempotent and final. `GET/POST /api/wonder-card`; a different card for the same session returns 409 with the kept card. Migration `drizzle/0001_wonder_cards.sql`; apply it locally with the `d1 execute --file` command above. Part ways is never persisted.
+- Bag: the accepted card appears in My Bag as "Your Wonder Card", a complimentary $0.00 gift, outside the piece count and subtotal. With no stones in the bag, it reads as reserved for the first order. A future checkout must read `wonder_cards` for the session and include the card with the order; never charge for it and never create an order from the card alone.
+- Analytics: `wonder_card_experience_started`, `_selected`, `_parted_ways`, `_accepted`, `_added_to_cart`, `_viewed_from_nav` (product id `wonder-card-N`).
+- Validation: `tests/wonder-card-browser.mjs` (Playwright via `PLAYWRIGHT_MODULE`) runs desktop, mobile and reduced-motion flows against the local server: arrival speed vs cruise, keyboard select/Escape focus return, part ways not persisted, accept, refresh persistence, single $0 bag line, second card refused, no replacement controls.
+- Reduced motion: no procession movement; cards sit in a scrollable row and the reveal uses short fades. There is no customer-facing reset; for local testing delete the session's row from `wonder_cards` or clear the `astraea_session` cookie.
+
+### Artwork integration, Oct 1, 2026
+
+24 cards now have reviewed artwork and matching 1536x1024 WebP assets; only card 9 remains pending wording and subject confirmation.
+Cards 24 and 25 were generated with the built-in imagegen tool from the subjects and style in `generation-prompts.json`.
+Originals remain in `../curated-products/wonder-cards/originals/`.
+Run `node scripts/optimize-wonder-cards.mjs` to convert newly added originals at WebP quality 82.
+The converter preserves existing outputs and rejects originals outside the 3:2 aspect ratio.
+
+## Visual studio, Oct 1, 2026
+
+The admin now presents the collection as image-led cards using the storefront typography, responsive cover assets, and saved framing.
+Titles, prices, subtitles, and summaries edit in place with explicit save/cancel controls; stories edit in the details dialog.
+Enter saves single-line fields; multiline fields use the save button or Command/Control+Enter, and Escape cancels.
+Protected copy stays read-only, failed saves retain input, and server revision checks reject stale edits.
+Images open a modal for uploads, cover selection, gallery membership, focus, zoom, and AI-staged labeling.
+Publication, specimen facts, inventory, editorial status, revisions, analytics, and catalog import/export remain available.
+New stones begin as unpublished drafts with unconfirmed prices and facts.
+`tests/studio-browser.mjs` checks real local persistence, conflicts, protected copy, image framing, revision history, export, and phone/tablet layout.
+Draft creation and upload-selection UI checks mock their writes; `tests/api-smoke.mjs` verifies real upload/readback and server protections separately.
+The browser suite restores its edited product afterward.
+TypeScript, content-policy, artwork-upgrade, API smoke, browser checks, and the production build pass; lint reports zero errors and image-element warnings.
+
+## Hosted update, Oct 2, 2026
+
+Procession cards are 12% larger, with visible overflow so the hover glow is not clipped by the row.
+The outer discovery view still contains horizontal movement within the viewport.
+Wonder Card reveals, stone details, and keepsake recollections fade into place.
+Unconfirmed card 9 is excluded from the procession until its wording is confirmed; its source record remains intact.
+The publish includes the visual studio, 24 card images, and the append-only Wonder Card migration.
+
+## Water interaction and collection layout, Oct 2, 2026
+
+The Wonder Card background now uses a decorative WebGL water shader with pointer ripples and a low-resolution, reduced-cadence idle render path.
+Intro text stays accessible HTML, with a temporary SVG displacement filter on pointer movement nearby; cards never receive that filter.
+The renderer releases GPU resources on unmount, pauses when hidden or offscreen, and falls back to the static atmosphere for reduced motion or unavailable WebGL.
+Part ways immediately resumes cruising, retains the source card in its carousel slot, and fades the overlay out with a completion fallback.
+Stone discovery fades in after the ritual.
+The collection alternates top-aligned two-card and three-card rows on desktop and uses responsive feature rows on smaller screens.
+The centered oval search has a shadow-free frosted backdrop and sticks below a compact header; navigation font sizes stay unchanged, and the active underline sits close to its label.
+`tests/water-collection-browser.mjs` covers WebGL and fallback paths, unaffected cards, text ripples, card return, the new layout, sticky alignment, compact navigation, and preserved font sizes.
+
+## Continuous Discover and Collection
+
+Discover and Collection now share one page and one product grid.
+The primary navigation scrolls between sections and follows the current scroll position; `/catalog` opens at the collection.
+Collection cards reveal once as they enter the viewport, with short staggered opacity and upward-motion transitions; reduced motion and keyboard focus show cards immediately.
+The Wonder Card procession pauses its transform updates while offscreen.
+`tests/discover-collection-browser.mjs` verifies the continuous layout, section navigation, entrances, sticky search, filtering, direct links, and mobile/reduced-motion behavior.
+
+## Related item browsing
+
+Every item detail includes up to four related published, unsold products, excluding itself and collection references.
+`lib/related-products.ts` ranks overlap in existing mineral descriptions and uses catalog order as a stable fallback; the UI does not assert new mineral facts.
+Related links switch the existing detail panel to the next item, reset its scroll and focus, and support browser Back and opening links in a new tab.
+`tests/related-stones-browser.mjs` covers desktop and mobile recommendations, item transitions, focus, Back, and closing the panel.

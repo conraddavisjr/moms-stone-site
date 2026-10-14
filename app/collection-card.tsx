@@ -6,7 +6,14 @@ import {Product,money,imageAlt,sold} from '@/lib/product';
 
 import {brand} from '@/content/brand';
 type Media={src:string;type:'image'|'video'};
-export default function CollectionCard({product:p,onOpen,reduced,priority=false}:{product:Product;onOpen:()=>void;reduced:boolean;priority?:boolean}){
+export default function CollectionCard({product:p,onOpen,reduced,priority=false,entranceIndex=0}:{product:Product;onOpen:()=>void;reduced:boolean;priority?:boolean;entranceIndex?:number}){
+ const article=useRef<HTMLElement>(null);
+ useEffect(()=>{
+  const el=article.current;if(!el||!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  el.dataset.entrance='waiting';
+  const observer=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting)){el.dataset.entrance='shown';observer.disconnect()}},{threshold:0,rootMargin:'0px 0px -35px 0px'});
+  observer.observe(el);return()=>{observer.disconnect();delete el.dataset.entrance};
+ },[]);
  const [hover,setHover]=useState(false),[focus,setFocus]=useState(false),[visible,setVisible]=useState(true),[cursor,setCursor]=useState(0),[ready,setReady]=useState(false),[previous,setPrevious]=useState<Media|null>(null);
  const cover=p.hero||p.images[0],images=useMemo(()=>Array.from(new Set([cover,...(p.studioImages??p.images)].filter(Boolean))),[cover,p.images,p.studioImages]);
  const media=useMemo<Media[]>(()=>[...p.videos.map(src=>({src,type:'video' as const})),...images.map(src=>({src,type:'image' as const}))],[p.videos,images]);
@@ -23,9 +30,9 @@ export default function CollectionCard({product:p,onOpen,reduced,priority=false}
  const next=useCallback(()=>setCursor(i=>(i+1)%Math.max(media.length,1)),[media.length]);
  useEffect(()=>{if(!active||media.length<2)return;if(current?.type==='image'&&ready){const t=setTimeout(()=>setCursor(i=>(i+1)%media.length),2200);return()=>clearTimeout(t)}if(!ready){const t=setTimeout(()=>setCursor(i=>(i+1)%media.length),8000);return()=>clearTimeout(t)}},[active,current,ready,media.length]);
  useEffect(()=>{if(current?.type!=='video')return;const v=video.current;if(!v)return;let cancelled=false;v.play().catch(()=>{if(!cancelled)next()});return()=>{cancelled=true;v.pause()}},[current,next]);
- return <article className="product-card" onPointerEnter={e=>{if(e.pointerType==='mouse')setHover(true)}} onPointerLeave={()=>setHover(false)} onFocusCapture={()=>setFocus(true)} onBlurCapture={e=>{if(!e.currentTarget.contains(e.relatedTarget as Node))setFocus(false)}}>
+ return <article ref={article} style={{transitionDelay:`${(entranceIndex%5<2?entranceIndex%5:(entranceIndex%5-2))*85}ms`}} className="product-card" onPointerEnter={e=>{if(e.pointerType==='mouse')setHover(true)}} onPointerLeave={()=>setHover(false)} onFocusCapture={()=>setFocus(true)} onBlurCapture={e=>{if(!e.currentTarget.contains(e.relatedTarget as Node))setFocus(false)}}>
  <button className={`card-image ${active?'is-previewing':''} ${images.length===1&&!p.videos.length?'single-image':''}`} onClick={onOpen} aria-label={`${brand.labels.meet}: ${p.title}`}>
- <img className="card-cover" loading={priority?'eager':'lazy'} src={cover} {...responsiveImage(cover)} sizes="(max-width: 900px) 44vw, 29vw" alt={imageAlt(p)} style={{objectPosition:`${p.focalX??50}% ${p.focalY??50}%`,transform:`scale(${p.zoom??1})`}}/>
+ <img className="card-cover" loading={priority?'eager':'lazy'} src={cover} {...responsiveImage(cover)} sizes="(max-width: 600px) 88vw, (max-width: 900px) 70vw, 44vw" alt={imageAlt(p)} style={{objectPosition:`${p.focalX??50}% ${p.focalY??50}%`,transform:`scale(${p.zoom??1})`}}/>
  {[...(previous&&previous.src!==current?.src?[{item:previous,isCurrent:false}]:[]),...(current&&!(media.length===1&&current.type==='image')?[{item:current,isCurrent:true}]:[])].map(({item,isCurrent})=><div key={item.src} className={`preview-layer ${isCurrent?(ready?'preview-ready':''):'preview-previous'}`}>
  {item.type==='video'?<video ref={isCurrent?video:undefined} src={item.src} muted playsInline preload={isCurrent?'auto':'none'} onPlaying={()=>{if(isCurrent)setReady(true)}} onEnded={()=>{if(isCurrent)next()}} onError={()=>{if(isCurrent)next()}} onStalled={()=>{if(isCurrent)setReady(false)}} onWaiting={()=>{if(isCurrent)setReady(false)}} aria-label={`${p.title} film preview`}/>:<img src={item.src} alt="" onLoad={()=>{if(isCurrent)setReady(true)}} onError={()=>{if(isCurrent)next()}}/>}
  </div>)}
