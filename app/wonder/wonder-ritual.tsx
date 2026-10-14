@@ -183,7 +183,7 @@ export default function WonderRitual({reduced,onAccepted,onLanded,onConflict,tra
    <div className="wonder-stage-inner">
     <h2 id="wonder-ritual-title" className="wonder-ritual-line" tabIndex={-1} data-reveal="down">{state.phase==='accepted'?wonderCopy.accepted:wonderCopy.ritual}</h2>
     <p className="wonder-whisper" data-reveal="fade">{wonderCopy.whisper}</p>
-    <div className="wonder-hero" ref={hero}><WonderCardFace card={chosen} eager/></div>
+    <div className="wonder-hero" ref={hero}><WonderCardFace card={chosen} eager sizes="(max-width: 600px) calc(100vw - 40px), 720px"/></div>
     <p className="wonder-name" data-reveal="left">{wonderCardName(chosen.id)}</p>
     <p id="wonder-ritual-message" className="sr-only">{chosen.message}</p>
     <p className="wonder-choice" data-reveal="right">{wonderCopy.choice}</p>

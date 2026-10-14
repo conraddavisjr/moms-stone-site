@@ -1,17 +1,18 @@
 "use client";
 import {useState} from 'react';
 import Lotus from './lotus';
+import variants from '@/app/data/wonder-card-variants.json';
 import {type WonderCard,wonderCardArt,wonderCardName} from '@/content/wonder-cards';
 // Remember missing artwork for this page so moving cards never re-request a 404.
 const missing=new Set<string>();
 // One Wonder Card. The artwork is text-free; the number, message, divider, lotus and wordmark are real
 // text laid over the calm right side of the art, sized with container units so they stay crisp at any size.
-export default function WonderCardFace({card,eager=false,className=''}:{card:WonderCard;eager?:boolean;className?:string}){
+export default function WonderCardFace({card,eager=false,className='',sizes='(max-width: 600px) 83vw, 448px'}:{card:WonderCard;eager?:boolean;className?:string;sizes?:string}){
  const src=wonderCardArt(card.id);
  const [failed,setFailed]=useState(()=>missing.has(src));
  return <div className={`wcf ${failed?'wcf-textonly':'wcf-art'} ${className}`} style={{['--wcf-hue' as string]:`${((card.id*37)%36)-18}deg`}}>
   <div className="wcf-ground" aria-hidden="true">{failed&&<Lotus className="wcf-ghost"/>}</div>
-  {!failed&&<img className="wcf-image" src={src} alt={card.artAlt} loading={eager?'eager':'lazy'} decoding="async" draggable={false} onDragStart={e=>e.preventDefault()} onError={()=>{missing.add(src);setFailed(true)}}/>}
+  {!failed&&<img className="wcf-image" src={src} srcSet={(variants as Record<string,string[]>)[src]?.join(', ')} sizes={sizes} width={1536} height={1024} alt={card.artAlt} loading={eager?'eager':'lazy'} decoding="async" draggable={false} onDragStart={e=>e.preventDefault()} onError={()=>{missing.add(src);setFailed(true)}}/>}
   <div className="wcf-shade" aria-hidden="true"/>
   <div className="wcf-text">
    <span className="wcf-number"><span className="sr-only">{wonderCardName(card.id)}: </span><span aria-hidden="true">{card.id}</span></span>

@@ -8,7 +8,7 @@ import {wonderCard,wonderCardName,wonderCopy} from '@/content/wonder-cards';
 export function WonderKeepsake({cardId,landed,onOpen}:{cardId:number;landed:boolean;onOpen:()=>void}){
  const card=wonderCard(cardId);if(!card)return null;
  return <button type="button" className={`wonder-keepsake${landed?' landed':''}`} data-wonder-keepsake onClick={onOpen} aria-label={`${wonderCopy.keepsake}: ${wonderCardName(card.id)}`}>
-  <span className="wonder-keepsake-card"><WonderCardFace card={card} eager className="wcf-mini"/></span>
+  <span className="wonder-keepsake-card"><WonderCardFace card={card} eager className="wcf-mini" sizes="58px"/></span>
   <span className="wonder-keepsake-label" aria-hidden="true">{wonderCopy.keepsake}</span>
  </button>
 }
@@ -18,7 +18,7 @@ export function WonderRecollection({cardId,open,onOpenChange}:{cardId:number|nul
   <Lotus className="wonder-recollection-lotus"/>
   <SheetTitle className="wonder-recollection-title">{wonderCopy.keepsake}</SheetTitle>
   <SheetDescription className="wonder-recollection-name">{wonderCardName(card.id)}</SheetDescription>
-  <div className="wonder-recollection-card"><WonderCardFace card={card} eager/></div>
+  <div className="wonder-recollection-card"><WonderCardFace card={card} eager sizes="(max-width: 520px) calc(100vw - 60px), 460px"/></div>
   <p className="wonder-recollection-gift">{wonderCopy.gift}</p>
   <p className="wonder-recollection-note">{wonderCopy.travels}</p>
  </>}</SheetContent></Sheet>
@@ -26,7 +26,7 @@ export function WonderRecollection({cardId,open,onOpenChange}:{cardId:number|nul
 export function WonderBagLine({cardId,hasPieces}:{cardId:number;hasPieces:boolean}){
  const card=wonderCard(cardId);if(!card)return null;
  return <section className="wonder-bag-line" aria-label={wonderCopy.keepsake}>
-  <div className="wonder-bag-card"><WonderCardFace card={card} eager/></div>
+  <div className="wonder-bag-card"><WonderCardFace card={card} eager sizes="138px"/></div>
   <div className="wonder-bag-copy">
    <p className="eyebrow">{wonderCopy.keepsake}</p>
    <h3>{wonderCardName(card.id)}</h3>
